@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On The Plane Hangul/DetailViewController.swift"
+            timestampString = "498749488.23343"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "DetailViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "On_The_Plane_Hangul.DetailViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; On_The_Plane_Hangul.DetailViewController"
+                  moduleName = "On The Plane Hangul"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jaysteingold/Desktop/swift/On%20The%20Plane%20Hangul/On%20The%20Plane%20Hangul/DetailViewController.swift"
+                  timestampString = "498749925.503285"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "On_The_Plane_Hangul.DetailViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; On_The_Plane_Hangul.DetailViewController"
+                  moduleName = "On The Plane Hangul"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jaysteingold/Desktop/swift/On%20The%20Plane%20Hangul/On%20The%20Plane%20Hangul/DetailViewController.swift"
+                  timestampString = "498749925.505675"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "On_The_Plane_Hangul.DetailViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;On_The_Plane_Hangul.DetailViewController&gt;"
+                  moduleName = "On The Plane Hangul"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jaysteingold/Desktop/swift/On%20The%20Plane%20Hangul/On%20The%20Plane%20Hangul/DetailViewController.swift"
+                  timestampString = "498749925.508032"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "On_The_Plane_Hangul.DetailViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;On_The_Plane_Hangul.DetailViewController&gt;"
+                  moduleName = "On The Plane Hangul"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jaysteingold/Desktop/swift/On%20The%20Plane%20Hangul/On%20The%20Plane%20Hangul/DetailViewController.swift"
+                  timestampString = "498749925.511207"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
