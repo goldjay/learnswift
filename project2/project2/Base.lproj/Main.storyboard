@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,18 +20,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLf-qM-s80">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yLf-qM-s80" secondAttribute="height" multiplier="2:1" id="myO-hf-xHm"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Xw-cS-Hop"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zt-Iz-zod">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8zt-Iz-zod" secondAttribute="height" multiplier="2:1" id="gc6-q1-f53"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MST-NP-khI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5J-jP-3Da">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="G5J-jP-3Da" secondAttribute="height" multiplier="2:1" id="1qN-DP-Mig"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S7r-0m-vav"/>
@@ -39,10 +49,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="G5J-jP-3Da" firstAttribute="height" secondItem="8zt-Iz-zod" secondAttribute="height" id="6GG-GR-P1o"/>
                             <constraint firstItem="8zt-Iz-zod" firstAttribute="top" secondItem="yLf-qM-s80" secondAttribute="bottom" constant="30" id="7jY-oW-sf9"/>
                             <constraint firstItem="G5J-jP-3Da" firstAttribute="top" secondItem="8zt-Iz-zod" secondAttribute="bottom" constant="30" id="Ca1-1j-Wxa"/>
                             <constraint firstItem="8zt-Iz-zod" firstAttribute="centerX" secondItem="yLf-qM-s80" secondAttribute="centerX" id="EeK-jB-1h4"/>
                             <constraint firstItem="yLf-qM-s80" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Rvm-L0-x3B"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G5J-jP-3Da" secondAttribute="bottom" constant="20" id="Tyl-pO-n5a"/>
+                            <constraint firstItem="8zt-Iz-zod" firstAttribute="height" secondItem="yLf-qM-s80" secondAttribute="height" id="fDj-mj-StA"/>
                             <constraint firstItem="G5J-jP-3Da" firstAttribute="centerX" secondItem="8zt-Iz-zod" secondAttribute="centerX" id="jtF-W7-PaD"/>
                             <constraint firstItem="yLf-qM-s80" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="54" id="yur-b0-EMi"/>
                         </constraints>
