@@ -13,6 +13,7 @@ class ViewController: UITableViewController {
     
     var allWords = [String]()
     var usedWords = [String]()
+    var wordCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,16 +21,28 @@ class ViewController: UITableViewController {
         //UIAlertController with space for the user to make an answer
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(startGame))
+        
         //Loads words from start.text into the allWords array
         if let startWordsPath = Bundle.main.path(forResource: "start", ofType: "txt") {
             if let startWords = try? String(contentsOfFile: startWordsPath) {
                 //Separator to divide words
                 allWords = startWords.components(separatedBy: "\n")
             }
+            else {
+                allWords = loadDefaultWords()
+            }
         } else{
-            allWords = ["silkworm"]
+            allWords = loadDefaultWords()
         }
-        startGame()
+        allWords = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: allWords) as! [String]
+        
+        startGame(num: wordCount)
+    }
+    
+    func loadDefaultWords() -> [String] {
+        let words = ["sesquipedalian", "verisimilitude", "masticate", "insipid", "quotidian"]
+        return words
     }
     
     func promptForAnswer() {
@@ -72,8 +85,14 @@ class ViewController: UITableViewController {
                     return
                 }
                 else {
+                    if(lowerAnswer.characters.count < 3) {
+                            errorTitle = "Word is too short"
+                        errorMessage = "We don't want any tiny words. Throw it back!"
+                    }
+                    else {
                     errorTitle = "Word not recognized"
                     errorMessage = "You can't just make them up, you know!"
+                    }
                 }
             }
             else {
@@ -86,10 +105,15 @@ class ViewController: UITableViewController {
             errorMessage = "You can't spell that word from '\(title!.lowercased())'!"
         }
         
-        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        showErrorMessage(title: errorTitle, message: errorMessage)
+        
+    }
+    
+    func showErrorMessage(title: String, message: String) {
+        
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
-        
     }
     
     func isPossible(word: String) -> Bool {
@@ -108,10 +132,18 @@ class ViewController: UITableViewController {
     }
     
     func isOriginal(word: String) -> Bool {
+        if (word == title) {
+            return false
+        }
+        
         return !usedWords.contains(word)
     }
     
     func isReal(word: String) -> Bool {
+        if(word.characters.count < 3) {
+            return false
+        }
+        
         //iOS class designed to spot spelling errors
         let checker = UITextChecker()
         //Use utf16 when working with UIKit, SpriteKit or any apple framework
@@ -121,12 +153,13 @@ class ViewController: UITableViewController {
         return misspelledRange.location == NSNotFound
     }
     
-    func startGame() {
-        allWords = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: allWords) as! [String]
-            title = allWords[0]
+    func startGame(num: Int) {
+        
+            title = allWords[wordCount]
         //Clears the words we used in the previous game, if any
         usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
+        wordCount += 1
     }
     
     //Counts the number of used words
