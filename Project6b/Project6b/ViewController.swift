@@ -50,6 +50,21 @@ class ViewController: UIViewController {
         //Use instead of "magic numbers" to set heights and widths
         let metrics = ["labelHeight": 88]
         
+        var previous: UILabel!
+        
+        for label in [label1, label2, label3, label4, label5] {
+            label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+            label.heightAnchor.constraint(equalToConstant: 88).isActive = true
+            
+            //If there is a previous label, set the top anchor to the previous's bottom anchor
+            if previous != nil {
+                label.topAnchor.constraint(equalTo: previous.bottomAnchor).isActive = true
+            }
+            
+            previous = label
+        }
+        
+        /*
         for label in viewsDictionary.keys {
             //Auto-layout method that converts VFL into an array of constraints
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[\(label)]|", options: [], metrics: metrics, views: viewsDictionary))
@@ -57,13 +72,15 @@ class ViewController: UIViewController {
                 // "|" is the edge of the view
                 // Use viewDictionary to add the label itself into the formatting
         }
-        
+ 
         
         //"V" is vertical
         //No second "|" if you don't want it to stretch
         //Label height set by (==88)
         //final label distance from bottom -(>=10)-|
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1(labelHeight@999)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]-(>=10)-|", options: [], metrics: metrics, views: viewsDictionary))
+ 
+        */
         
     }
     
