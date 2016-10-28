@@ -9,11 +9,22 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var selectedImage: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        title = selectedImage
+        
+        if let imageToLoad = selectedImage {
+            print("GOT AN IMAGE!")
+            imageView.layer.borderWidth = 2
+            imageView.image  = UIImage(named: imageToLoad)
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
