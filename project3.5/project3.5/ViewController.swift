@@ -16,6 +16,9 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain"]
+        
+        /*
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
@@ -27,6 +30,8 @@ class ViewController: UITableViewController {
             }
             
         }
+ */
+ 
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,6 +42,7 @@ class ViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Country", for: indexPath)
         cell.textLabel?.text = countries[indexPath.row]
         cell.imageView!.image = UIImage(named: countries[indexPath.row])
+        cell.imageView!.layer.borderWidth = 2
         return cell
     }
     
