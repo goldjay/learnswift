@@ -41,8 +41,11 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Country", for: indexPath)
         cell.textLabel?.text = countries[indexPath.row]
-        cell.imageView!.image = UIImage(named: countries[indexPath.row])
-        cell.imageView!.layer.borderWidth = 2
+        cell.accessoryView = UIImageView(image: UIImage(named: countries[indexPath.row]))
+        cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 36, height: 30)
+        cell.accessoryView?.layer.borderWidth = 1
+        //cell.imageView!.image = UIImage(named: countries[indexPath.row])
+        //cell.imageView!.layer.borderWidth = 2
         return cell
     }
     
