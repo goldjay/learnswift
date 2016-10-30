@@ -155,7 +155,7 @@ class ViewController: UITableViewController {
     
     func startGame(num: Int) {
         
-            title = allWords[wordCount]
+        title = allWords[wordCount]
         //Clears the words we used in the previous game, if any
         usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()

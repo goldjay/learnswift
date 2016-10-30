@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Social
 
 class DetailViewController: UIViewController {
     
@@ -19,12 +20,26 @@ class DetailViewController: UIViewController {
         
         title = selectedImage
         
+        //Adds a sharing button to the navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+
+        
+        
         if let imageToLoad = selectedImage {
-            print("GOT AN IMAGE!")
             imageView.layer.borderWidth = 2
             imageView.image  = UIImage(named: imageToLoad)
             
         }
+    }
+    
+    func shareTapped() {
+        if let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
+            vc.setInitialText("Wow, look at this flag!")
+            vc.add(imageView.image!)
+            //vc.add(URL(string: "http://photolib.noaa.gov/nssl"))
+            present(vc, animated: true)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
