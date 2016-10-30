@@ -16,8 +16,6 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(addItem))
-
     }
     
     func addItem() {
@@ -35,7 +33,7 @@ class ViewController: UITableViewController {
     func submit(task: String) {
         //If the string isn't empty
         if(task.characters.count != 0) {
-            shoppingList.append(task)
+            shoppingList.insert(task, at: 0)
             //First position in the table
             let indexPath = IndexPath(row: 0, section: 0)
             tableView.insertRows(at: [indexPath], with: .automatic)
@@ -52,6 +50,7 @@ class ViewController: UITableViewController {
         cell.textLabel?.text = shoppingList[indexPath.row]
         return cell
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
