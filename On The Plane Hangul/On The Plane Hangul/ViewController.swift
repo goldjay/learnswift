@@ -11,23 +11,16 @@ import UIKit
 class ViewController: UITableViewController {
     var levels = Array(1...10)
     
+    var decks = [[String]()]
+    var deck1 = [String]()
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let fm = FileManager.default
-        let path = Bundle.main.resourcePath!
-        let items = try! fm.contentsOfDirectory(atPath: path)
-        
-        print("Items: " + "\(items)")
-        
-        for item in items {
-            if item.hasPrefix("1") {
-                print("OMG I FOUND AN ITEM!")
-                print(item)
-            }
-        }
-        
+        deck1 += ["ah", "eo", "eu", "i", "o"]
+        decks.insert(deck1, at: 0) //CHANGE TO VARIABLE AND MADE LOOP?
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,8 +43,12 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Names the view controller we want to navigate to
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
-            //Sets the variable in the new view to a variable in the old
-            vc.deckNum = levels[indexPath.row]
+            print("INDEX PATH")
+            print(indexPath.row)
+            vc.selectedDeck = decks[indexPath.row]
+            
+            
+            
             navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -9,11 +9,15 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    @IBOutlet weak var imageView: UIImageView!
-    var deckNum: Int?
+    var selectedDeck: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("MADE IT TO THE DETAIL")
+        print(selectedDeck)
+        for a in selectedDeck {
+            print(a)
+        }
         
         //Load and create the decks
         
@@ -21,7 +25,7 @@ class DetailViewController: UIViewController {
         
         //Create askquestion method
 
-        title = String(deckNum!)
+        //title = String(deckNum!)
     }
 
     override func didReceiveMemoryWarning() {
