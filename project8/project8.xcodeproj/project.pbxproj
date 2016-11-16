@@ -12,6 +12,8 @@
 		59E91D101DDC867000D2691A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59E91D0E1DDC867000D2691A /* Main.storyboard */; };
 		59E91D121DDC867000D2691A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59E91D111DDC867000D2691A /* Assets.xcassets */; };
 		59E91D151DDC867000D2691A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59E91D131DDC867000D2691A /* LaunchScreen.storyboard */; };
+		59EC27241DDC9578000107FD /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59EC27221DDC9578000107FD /* level1.txt */; };
+		59EC27251DDC9578000107FD /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59EC27231DDC9578000107FD /* level2.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		59E91D111DDC867000D2691A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59E91D141DDC867000D2691A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59E91D161DDC867000D2691A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59EC27221DDC9578000107FD /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
+		59EC27231DDC9578000107FD /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 				59E91D0C1DDC867000D2691A /* ViewController.swift */,
 				59E91D0E1DDC867000D2691A /* Main.storyboard */,
 				59E91D111DDC867000D2691A /* Assets.xcassets */,
+				59EC27221DDC9578000107FD /* level1.txt */,
+				59EC27231DDC9578000107FD /* level2.txt */,
 				59E91D131DDC867000D2691A /* LaunchScreen.storyboard */,
 				59E91D161DDC867000D2691A /* Info.plist */,
 			);
@@ -123,7 +129,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59EC27251DDC9578000107FD /* level2.txt in Resources */,
 				59E91D151DDC867000D2691A /* LaunchScreen.storyboard in Resources */,
+				59EC27241DDC9578000107FD /* level1.txt in Resources */,
 				59E91D121DDC867000D2691A /* Assets.xcassets in Resources */,
 				59E91D101DDC867000D2691A /* Main.storyboard in Resources */,
 			);
@@ -301,6 +309,7 @@
 				59E91D1B1DDC867000D2691A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
