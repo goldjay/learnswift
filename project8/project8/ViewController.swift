@@ -20,12 +20,41 @@ class ViewController: UIViewController {
     var activatedButtons = [UIButton]()
     var solutions = [String]()
     
-    var score = 0
+    //Updates the score label whenever the score variable is changed!
+    var score: Int = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
     var level = 1
     
     @IBAction func submitTapped(_ sender: AnyObject) {
+        if let solutionPosition = solutions.index(of: currentAnswer.text!) {
+            activatedButtons.removeAll()
+            
+            var splitClues = answersLabel.text!.components(separatedBy: "\n")
+            splitClues[solutionPosition] = currentAnswer.text!
+            answersLabel.text = splitClues.joined(separator: "\n")
+            
+            currentAnswer.text = ""
+            score += 1
+            
+            if score % 7 == 0 {
+                let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "let's go!", style: .default, handler: levelUp))
+                present(ac, animated: true)
+            }
+        }
     }
+    
+    //Resets answer and displays all answer input buttons
     @IBAction func clearTapped(_ sender: AnyObject) {
+        currentAnswer.text = ""
+        
+        for btn in activatedButtons {
+            btn.isHidden = false
+        }
+        activatedButtons.removeAll()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +69,12 @@ class ViewController: UIViewController {
     }
     
     func letterTapped(btn: UIButton) {
-        
+        //Gets title from tapped button
+        currentAnswer.text = currentAnswer.text! + btn.titleLabel!.text!
+        //Adds tapped button to activated
+        activatedButtons.append(btn)
+        //Hides the button
+        btn.isHidden = true
     }
     
     func loadLevel() {
@@ -88,6 +122,17 @@ class ViewController: UIViewController {
             
         }
     }
+    }
+    
+    func levelUp(action: UIAlertAction!) {
+        level += 1
+        solutions.removeAll(keepingCapacity: true)
+        
+        loadLevel()
+        
+        for btn in letterButtons {
+            btn.isHidden = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
