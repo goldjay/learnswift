@@ -36,6 +36,7 @@ class ViewController: UIViewController {
             letterButtons.append(btn)
             btn.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
         }
+        loadLevel()
     }
     
     func letterTapped(btn: UIButton) {
@@ -55,22 +56,38 @@ class ViewController: UIViewController {
                 
                 //Enumerated gives us the position of each item in the lines array
                 for (index, line) in lines.enumerated() {
+                    //Splits each line into answer and clue
                     let parts = line.components(separatedBy: ": ")
                     let answer = parts[0]
                     let clue = parts[1]
                     
+                    //Need to do +1 because the index actually starts at 0
                     clueString += "\(index + 1). \(clue)\n"
                     
+                    //Remove all "|" characters fromt the string
                     let solutionWord = answer.replacingOccurrences(of: "|", with: "")
                     solutionString += "\(solutionWord.characters.count)letters\n"
                     solutions.append(solutionWord)
                     
+                    //Turns answer into question by breaking into parts and placing in an array
                     let bits = answer.components(separatedBy: "|")
                     letterBits += bits
                 }
             }
         }
-        //Configure buttons and labels here
+        //Removes white spaces and new lines from front and back of string
+        cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
+        answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        letterBits = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: letterBits) as! [String]
+        
+        if letterBits.count == letterButtons.count {
+            // 0 up to but not including the number of letterBits
+            for i in 0 ..< letterBits.count {
+                letterButtons[i].setTitle(letterBits[i], for: .normal)
+            
+        }
+    }
     }
 
     override func didReceiveMemoryWarning() {
