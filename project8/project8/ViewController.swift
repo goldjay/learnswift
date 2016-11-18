@@ -28,6 +28,19 @@ class ViewController: UIViewController {
     }
     var level = 1
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //Loops through all views inside viewController
+        //Modify only if the tag is 1001
+        for subview in view.subviews where subview.tag == 1001 {
+            let btn = subview as! UIButton
+            letterButtons.append(btn)
+            btn.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
+        }
+        loadLevel()
+    }
+    
     @IBAction func submitTapped(_ sender: AnyObject) {
         if let solutionPosition = solutions.index(of: currentAnswer.text!) {
             activatedButtons.removeAll()
@@ -55,17 +68,6 @@ class ViewController: UIViewController {
             btn.isHidden = false
         }
         activatedButtons.removeAll()
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //Loops through all views inside viewController
-        //Modify only if the tag is 1001
-        for subview in view.subviews where subview.tag == 1001 {
-            let btn = subview as! UIButton
-            letterButtons.append(btn)
-            btn.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
-        }
-        loadLevel()
     }
     
     func letterTapped(btn: UIButton) {
