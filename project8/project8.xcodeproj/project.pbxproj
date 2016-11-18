@@ -7,21 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59CF4EF41DDFBA0800A5F417 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59CF4EF31DDFBA0800A5F417 /* Assets.xcassets */; };
+		59CF4EF81DDFBE7100A5F417 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CF4EF71DDFBE7100A5F417 /* extensions.swift */; };
 		59E91D0B1DDC867000D2691A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E91D0A1DDC867000D2691A /* AppDelegate.swift */; };
 		59E91D0D1DDC867000D2691A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E91D0C1DDC867000D2691A /* ViewController.swift */; };
 		59E91D101DDC867000D2691A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59E91D0E1DDC867000D2691A /* Main.storyboard */; };
-		59E91D121DDC867000D2691A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59E91D111DDC867000D2691A /* Assets.xcassets */; };
 		59E91D151DDC867000D2691A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59E91D131DDC867000D2691A /* LaunchScreen.storyboard */; };
 		59EC27241DDC9578000107FD /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59EC27221DDC9578000107FD /* level1.txt */; };
 		59EC27251DDC9578000107FD /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59EC27231DDC9578000107FD /* level2.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		59CF4EF31DDFBA0800A5F417 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		59CF4EF71DDFBE7100A5F417 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		59E91D071DDC867000D2691A /* project8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E91D0A1DDC867000D2691A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59E91D0C1DDC867000D2691A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		59E91D0F1DDC867000D2691A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		59E91D111DDC867000D2691A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59E91D141DDC867000D2691A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59E91D161DDC867000D2691A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59EC27221DDC9578000107FD /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
@@ -61,7 +63,8 @@
 				59E91D0A1DDC867000D2691A /* AppDelegate.swift */,
 				59E91D0C1DDC867000D2691A /* ViewController.swift */,
 				59E91D0E1DDC867000D2691A /* Main.storyboard */,
-				59E91D111DDC867000D2691A /* Assets.xcassets */,
+				59CF4EF71DDFBE7100A5F417 /* extensions.swift */,
+				59CF4EF31DDFBA0800A5F417 /* Assets.xcassets */,
 				59EC27221DDC9578000107FD /* level1.txt */,
 				59EC27231DDC9578000107FD /* level2.txt */,
 				59E91D131DDC867000D2691A /* LaunchScreen.storyboard */,
@@ -132,8 +135,8 @@
 				59EC27251DDC9578000107FD /* level2.txt in Resources */,
 				59E91D151DDC867000D2691A /* LaunchScreen.storyboard in Resources */,
 				59EC27241DDC9578000107FD /* level1.txt in Resources */,
-				59E91D121DDC867000D2691A /* Assets.xcassets in Resources */,
 				59E91D101DDC867000D2691A /* Main.storyboard in Resources */,
+				59CF4EF41DDFBA0800A5F417 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +149,7 @@
 			files = (
 				59E91D0D1DDC867000D2691A /* ViewController.swift in Sources */,
 				59E91D0B1DDC867000D2691A /* AppDelegate.swift in Sources */,
+				59CF4EF81DDFBE7100A5F417 /* extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

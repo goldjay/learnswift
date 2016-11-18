@@ -58,6 +58,13 @@ class ViewController: UIViewController {
                 present(ac, animated: true)
             }
         }
+        else {
+            if score > 0 {
+                score -= 1
+            }
+            currentAnswer.shake()
+        }
+
     }
     
     //Resets answer and displays all answer input buttons
@@ -102,7 +109,7 @@ class ViewController: UIViewController {
                     
                     //Remove all "|" characters fromt the string
                     let solutionWord = answer.replacingOccurrences(of: "|", with: "")
-                    solutionString += "\(solutionWord.characters.count)letters\n"
+                    solutionString += "\(solutionWord.characters.count) letters\n"
                     solutions.append(solutionWord)
                     
                     //Turns answer into question by breaking into parts and placing in an array
@@ -122,8 +129,8 @@ class ViewController: UIViewController {
             for i in 0 ..< letterBits.count {
                 letterButtons[i].setTitle(letterBits[i], for: .normal)
             
+            }
         }
-    }
     }
     
     func levelUp(action: UIAlertAction!) {
@@ -136,12 +143,11 @@ class ViewController: UIViewController {
             btn.isHidden = false
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
+
 
