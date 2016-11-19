@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		591C55651DDFE46E0008D229 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 591C55641DDFE46E0008D229 /* level1.txt */; };
 		59AC2B001DA92DD700600A34 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC2AFF1DA92DD700600A34 /* DetailViewController.swift */; };
 		59EE31C21DA9018400F8FB51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EE31C11DA9018400F8FB51 /* AppDelegate.swift */; };
 		59EE31C41DA9018400F8FB51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EE31C31DA9018400F8FB51 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		591C55641DDFE46E0008D229 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
 		59AC2AFF1DA92DD700600A34 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		59EE31BE1DA9018400F8FB51 /* On The Plane Hangul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Plane Hangul.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59EE31C11DA9018400F8FB51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				59EE31C31DA9018400F8FB51 /* ViewController.swift */,
 				59EE31C51DA9018400F8FB51 /* Main.storyboard */,
 				59AC2AFF1DA92DD700600A34 /* DetailViewController.swift */,
+				591C55641DDFE46E0008D229 /* level1.txt */,
 				59EE31C81DA9018400F8FB51 /* Assets.xcassets */,
 				59EE31CA1DA9018400F8FB51 /* LaunchScreen.storyboard */,
 				59EE31CD1DA9018400F8FB51 /* Info.plist */,
@@ -127,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59EE31CC1DA9018400F8FB51 /* LaunchScreen.storyboard in Resources */,
+				591C55651DDFE46E0008D229 /* level1.txt in Resources */,
 				59EE31C91DA9018400F8FB51 /* Assets.xcassets in Resources */,
 				59EE31C71DA9018400F8FB51 /* Main.storyboard in Resources */,
 			);
