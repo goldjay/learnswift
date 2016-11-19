@@ -19,6 +19,8 @@ class DetailViewController: UIViewController {
     
     var correctAnswer: Int = 0
     var numAnswered: Int = 0
+    var numCorrect: Int = 0
+    var numWrong: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +43,10 @@ class DetailViewController: UIViewController {
         let shuffledDeck = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: selectedDeck) as! [Card]
         
         //Choose a random answer
-        let correctAnswer = Int(arc4random_uniform(3))
-        
-        print("CORRECT ANSWER: ")
+        correctAnswer = Int(arc4random_uniform(3))
+        print("CORRECT ANSWER IN askQuestion: ")
         print(correctAnswer)
+        
         
         button1.setTitle(shuffledDeck[0].answer, for: UIControlState.normal)
         button2.setTitle(shuffledDeck[1].answer, for: UIControlState.normal)
@@ -60,18 +62,24 @@ class DetailViewController: UIViewController {
         print("SENDER TAG")
         print(sender.tag)
         
+        print("CORRECT ANSWER: ")
+        print(correctAnswer)
+        
         if sender.tag == correctAnswer {
+            print("YOU GOT ONE CORRECT")
             title = "Correct"
-            //score += 1
+            numCorrect += 1
+            print("NUMBER OF CORRECT ANSWERS:")
+            print(numCorrect)
         } else {
             title = "Wrong"
-            //score -= 1
+            numWrong += 1
         }
         
         numAnswered += 1
         //Ask if they want to continue every 10 questions
         if numAnswered % 10 == 0{
-            let ac = UIAlertController(title: title, message: "You have answered \(numAnswered) questions.", preferredStyle: .alert)
+            let ac = UIAlertController(title: title, message: "You have answered \(numCorrect) out of \(numAnswered) questions correct.", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Continue?", style: .default, handler: askQuestion))
             present(ac, animated: true)
         }
