@@ -7,9 +7,17 @@
 //
 
 import UIKit
+import GameplayKit
 
 class DetailViewController: UIViewController {
+    
+    @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var button2: UIButton!
+    @IBOutlet weak var button3: UIButton!
+    
     var selectedDeck: [Card] = []
+    
+    var correctAnswer: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +31,8 @@ class DetailViewController: UIViewController {
             
         }
         
+        askQuestion()
+        
         
         //Load and create the decks
         
@@ -31,6 +41,22 @@ class DetailViewController: UIViewController {
         //Create askquestion method
 
         //title = String(deckNum!)
+    }
+    
+    func askQuestion() {
+        //Shuffle cards in the deck
+        //Shuffle Q and A's (Maybe move to detailView)
+        let shuffledDeck = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: selectedDeck) as! [Card]
+        
+        //Choose a random answer
+        let correctAnswer = Int(arc4random_uniform(3))
+        
+        button1.setTitle(shuffledDeck[0].answer, for: UIControlState.normal)
+        button2.setTitle(shuffledDeck[1].answer, for: UIControlState.normal)
+        button3.setTitle(shuffledDeck[2].answer, for: UIControlState.normal)
+        
+        
+        title = shuffledDeck[0].question
     }
 
     override func didReceiveMemoryWarning() {

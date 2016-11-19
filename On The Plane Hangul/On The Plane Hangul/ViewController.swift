@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GameplayKit
 
 class ViewController: UITableViewController {
     var levels = Array(1...10)
@@ -53,9 +52,6 @@ class ViewController: UITableViewController {
                 if let levelContents = try? String(contentsOfFile: levelFilePath) {
                     //Split Q and A's by linebreak
                     var lines = levelContents.components(separatedBy: "\n")
-                    
-                    //Shuffle Q and A's (Maybe move to detailView)
-                    lines = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: lines) as! [String]
                     
                     //Enumerated gives us the position of each item in the lines array
                     for (index, line) in lines.enumerated() {
