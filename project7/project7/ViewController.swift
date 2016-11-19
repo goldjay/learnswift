@@ -15,6 +15,10 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        performSelector(inBackground: #selector(fetchJSON), with: nil)
+    }
+    
+    func fetchJSON() {
         let urlString: String
         
         if navigationController?.tabBarItem.tag == 0 {
@@ -24,37 +28,46 @@ class ViewController: UITableViewController {
             urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
         }
         
+        //Also .utility and .background QoS queues
         
-        if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {
-                let json = JSON(data: data)
-                
-                if json["metadata"]["responseInfo"]["status"].intValue == 200 {
-                    print(json)
-                    parse(json: json)
-                    return
+            if let url = URL(string: urlString) {
+                if let data = try? Data(contentsOf: url) {
+                    let json = JSON(data: data)
+                    
+                    if json["metadata"]["responseInfo"]["status"].intValue == 200 {
+                        print(json)
+                        //Since its inside a closure, we must prefix with self
+                        self.parse(json: json)
+                        return
+                    }
                 }
             }
+             performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
         }
-        showError()
-    }
+    
     
     //Places json data into an object
     func parse(json: JSON) {
         for result in json["results"].arrayValue {
             let title = result["title"].stringValue
-            let body = result["body"].stringValue //Body string is usually "" in data object
+            var body = result["body"].stringValue //Body string is usually "" in data object
+            if result["body"].stringValue == "" {
+                body = title
+            }
             let sigs = result["signatureCount"].stringValue
             let obj = ["title": title, "body": body, "sigs": sigs]
             petitions.append(obj)
         }
-        tableView.reloadData()
+        
+        //Asychoniously reloads the table data
+        tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
     }
     
     func showError() {
         let ac = UIAlertController(title: "Loading Error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        self.present(ac, animated: true)
+        
     }
     
     //Sets number of rows to number of petitions
@@ -64,19 +77,20 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let petition = petitions[indexPath.row]
         
+        let petition = petitions[indexPath.row]
         cell.textLabel?.text = petition["title"]
         cell.detailTextLabel?.text = petition["body"]
+        
         return cell
     }
     
-    //Sends the dictionary to the detailViewController to be viewed
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController()
         vc.detailItem = petitions[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
