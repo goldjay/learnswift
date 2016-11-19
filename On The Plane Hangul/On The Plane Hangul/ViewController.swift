@@ -13,16 +13,11 @@ class ViewController: UITableViewController {
     var levels = Array(1...10)
     
     var decks = [[String]()]
-    var deck1 = [String]()
+    var currentDeck = [Card]()
     
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        deck1 += ["ah", "eo", "eu", "i", "o"]
-        decks.insert(deck1, at: 0) //CHANGE TO VARIABLE AND MADE LOOP?
-    }
+            }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return levels.count
@@ -45,49 +40,35 @@ class ViewController: UITableViewController {
         //Names the view controller we want to navigate to
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
             
+            
+            /* FOR THE FUTURE
+            * Check database if there is a deck already made
+            * If so, use that deck, otherwise, create a new one
+            *
+            */
+            
             //Find and load level string from the disk
             if let levelFilePath = Bundle.main.path(forResource: "level\(indexPath.row + 1)", ofType: "txt") {
-                print("FOUND THE FILE")
+
                 if let levelContents = try? String(contentsOfFile: levelFilePath) {
+                    //Split Q and A's by linebreak
                     var lines = levelContents.components(separatedBy: "\n")
-                    print("LINES before shuffle: ")
-                    print(lines)
+                    
+                    //Shuffle Q and A's (Maybe move to detailView)
                     lines = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: lines) as! [String]
-                    print("LINES after shuffle: ")
-                    print(lines)
-                   
+                    
                     //Enumerated gives us the position of each item in the lines array
                     for (index, line) in lines.enumerated() {
                         //Splits each line into answer and clue
                         let parts = line.components(separatedBy: ": ")
-                        let question = parts[0]
-                        print(parts)
-                        //let clue = parts[1]
-                        
-                        //print(answer)
-                        //print(clue)
- 
-                    
-                   /*
-                        //Need to do +1 because the index actually starts at 0
-                        clueString += "\(index + 1). \(clue)\n"
-                        
-                        //Remove all "|" characters fromt the string
-                        let solutionWord = answer.replacingOccurrences(of: "|", with: "")
-                        solutionString += "\(solutionWord.characters.count) letters\n"
-                        solutions.append(solutionWord)
-                        
-                        //Turns answer into question by breaking into parts and placing in an array
-                        let bits = answer.components(separatedBy: "|")
-                        letterBits += bits
- 
-                    */
+                        let card = Card(question: parts[0], answer: parts[1])
+                        currentDeck.append(card)
                     }
                 }
             }
             
             
-            vc.selectedDeck = decks[indexPath.row]
+            vc.selectedDeck = currentDeck
             
             
             

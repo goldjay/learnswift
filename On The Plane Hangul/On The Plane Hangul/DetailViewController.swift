@@ -9,18 +9,20 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    var selectedDeck: [String] = []
+    var selectedDeck: [Card] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*
+        
         print("MADE IT TO THE DETAIL")
         print(selectedDeck)
         for a in selectedDeck {
-            print(a)
+            print(a.question)
+            print(a.answer)
+            
         }
-        */
+        
         
         //Load and create the decks
         
