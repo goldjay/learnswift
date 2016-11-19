@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
     var selectedDeck: [Card] = []
     
     var correctAnswer: Int = 0
+    var numAnswered: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +33,9 @@ class DetailViewController: UIViewController {
         }
         
         askQuestion()
-        
-        
-        //Load and create the decks
-        
-        //One deck for questions and another for answers
-        
-        //Create askquestion method
-
-        //title = String(deckNum!)
     }
     
-    func askQuestion() {
+    func askQuestion(action: UIAlertAction! = nil) {
         //Shuffle cards in the deck
         //Shuffle Q and A's (Maybe move to detailView)
         let shuffledDeck = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: selectedDeck) as! [Card]
@@ -51,28 +43,46 @@ class DetailViewController: UIViewController {
         //Choose a random answer
         let correctAnswer = Int(arc4random_uniform(3))
         
+        print("CORRECT ANSWER: ")
+        print(correctAnswer)
+        
         button1.setTitle(shuffledDeck[0].answer, for: UIControlState.normal)
         button2.setTitle(shuffledDeck[1].answer, for: UIControlState.normal)
         button3.setTitle(shuffledDeck[2].answer, for: UIControlState.normal)
         
         
-        title = shuffledDeck[0].question
+        title = shuffledDeck[correctAnswer].question
+    }
+    
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        var title: String
+        
+        print("SENDER TAG")
+        print(sender.tag)
+        
+        if sender.tag == correctAnswer {
+            title = "Correct"
+            //score += 1
+        } else {
+            title = "Wrong"
+            //score -= 1
+        }
+        
+        numAnswered += 1
+        //Ask if they want to continue every 10 questions
+        if numAnswered % 10 == 0{
+            let ac = UIAlertController(title: title, message: "You have answered \(numAnswered) questions.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Continue?", style: .default, handler: askQuestion))
+            present(ac, animated: true)
+        }
+        askQuestion()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
