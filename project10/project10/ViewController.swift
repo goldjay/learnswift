@@ -24,11 +24,15 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        //If we fail to get the image, exit immediately
         guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
         
+        //Create unique identifier for the image as a string type
         let imageName = UUID().uuidString
+        //Uses path from document directory and adds the unique name to the path
         let imagepath = getDocumentsDirectory().appendingPathComponent(imageName)
         
+        //Converts ui image to jpeg format with quality 80/100
         if let jpegData = UIImageJPEGRepresentation(image, 80) {
             try? jpegData.write(to: imagepath)
         }
@@ -37,6 +41,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     }
     
     func getDocumentsDirectory() -> URL {
+        //Gets the documents directory relative to the user's home directory
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory
