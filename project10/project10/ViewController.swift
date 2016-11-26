@@ -8,11 +8,38 @@
 
 import UIKit
 
-class ViewController: UICollectionViewController {
+class ViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+    }
+    
+    func addNewPerson() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
+        
+        let imageName = UUID().uuidString
+        let imagepath = getDocumentsDirectory().appendingPathComponent(imageName)
+        
+        if let jpegData = UIImageJPEGRepresentation(image, 80) {
+            try? jpegData.write(to: imagepath)
+        }
+        
+        dismiss(animated: true)
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     //How many items you want to show in the grid
