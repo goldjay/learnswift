@@ -128,40 +128,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     addChild(box)
                     
                 } else {
-                    //Generate a random number and create a ball of a different color
-                    var ballNum = Int(arc4random_uniform(7) + 1)
-                    var ballName = ""
-                    
-                    switch(ballNum) {
-                    case 1:
-                        ballName = "ballBlue"
-                    case 2:
-                        ballName = "ballCyan"
-                    case 3:
-                        ballName = "ballGreen"
-                    case 4:
-                        ballName = "ballGrey"
-                    case 5:
-                        ballName = "ballPurple"
-                    case 6:
-                        ballName = "ballRed"
-                    case 7:
-                        ballName = "ballYellow"
-                    default:
-                        ballName = "ballBlue"
+                    //Condition to restrict ball creation to top of the screen
+                    if(location.y > 650){
+                        //Generate a random number and create a ball of a different color
+                        var ballNum = Int(arc4random_uniform(7) + 1)
+                        var ballName = ""
+                        
+                        switch(ballNum) {
+                        case 1:
+                            ballName = "ballBlue"
+                        case 2:
+                            ballName = "ballCyan"
+                        case 3:
+                            ballName = "ballGreen"
+                        case 4:
+                            ballName = "ballGrey"
+                        case 5:
+                            ballName = "ballPurple"
+                        case 6:
+                            ballName = "ballRed"
+                        case 7:
+                            ballName = "ballYellow"
+                        default:
+                            ballName = "ballBlue"
+                        }
+                        
+                        //Create a ball
+                        let ball = SKSpriteNode(imageNamed: ballName)
+                        ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                        
+                        //Set ball's detection to its collision
+                        ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
+                        //restituion = bounciness
+                        ball.physicsBody!.restitution = 0.4
+                        ball.position = location
+                        ball.name = "ball"
+                        addChild(ball)
+                        
                     }
-                    
-                    //Create a ball
-                    let ball = SKSpriteNode(imageNamed: ballName)
-                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-                    
-                    //Set ball's detection to its collision
-                    ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
-                    //restituion = bounciness
-                    ball.physicsBody!.restitution = 0.4
-                    ball.position = location
-                    ball.name = "ball"
-                    addChild(ball)
                 }
             }
         }
