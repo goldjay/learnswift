@@ -10,6 +10,8 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    //Number of balls available
+    var balls = 5
     
     var scoreLabel: SKLabelNode!
     
@@ -129,9 +131,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                 } else {
                     //Condition to restrict ball creation to top of the screen
-                    if(location.y > 650){
+                    if(location.y > 650 && balls > 0){
                         //Generate a random number and create a ball of a different color
-                        var ballNum = Int(arc4random_uniform(7) + 1)
+                        let ballNum = Int(arc4random_uniform(7) + 1)
                         var ballName = ""
                         
                         switch(ballNum) {
@@ -164,7 +166,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         ball.position = location
                         ball.name = "ball"
                         addChild(ball)
-                        
+                        balls -= 1
                     }
                 }
             }
