@@ -42,6 +42,7 @@
 		59BAB0511DE9C4420008B6EA /* slotGlowGood.png in Resources */ = {isa = PBXBuildFile; fileRef = 59BAB0351DE9C4420008B6EA /* slotGlowGood.png */; };
 		59BAB0521DE9C4420008B6EA /* slotGlowGood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59BAB0361DE9C4420008B6EA /* slotGlowGood@2x.png */; };
 		59BAB0531DE9C4420008B6EA /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 59BAB0371DE9C4420008B6EA /* spark.png */; };
+		59D79E771DFBE33100738F9C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D79E761DFBE33100738F9C /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		59BAB0351DE9C4420008B6EA /* slotGlowGood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slotGlowGood.png; sourceTree = "<group>"; };
 		59BAB0361DE9C4420008B6EA /* slotGlowGood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slotGlowGood@2x.png"; sourceTree = "<group>"; };
 		59BAB0371DE9C4420008B6EA /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		59D79E761DFBE33100738F9C /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				59BAB0091DE9C2C30008B6EA /* GameScene.swift */,
 				59BAB00B1DE9C2C30008B6EA /* GameViewController.swift */,
 				59BAB00D1DE9C2C30008B6EA /* Main.storyboard */,
+				59D79E761DFBE33100738F9C /* Helper.swift */,
 				59BAB0101DE9C2C30008B6EA /* Assets.xcassets */,
 				59BAB0121DE9C2C30008B6EA /* LaunchScreen.storyboard */,
 				59BAB01B1DE9C4420008B6EA /* Content */,
@@ -266,6 +269,7 @@
 				59BAB00A1DE9C2C30008B6EA /* GameScene.swift in Sources */,
 				59BAB00C1DE9C2C30008B6EA /* GameViewController.swift in Sources */,
 				59BAB0041DE9C2C30008B6EA /* AppDelegate.swift in Sources */,
+				59D79E771DFBE33100738F9C /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +431,7 @@
 				59BAB01A1DE9C2C30008B6EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
