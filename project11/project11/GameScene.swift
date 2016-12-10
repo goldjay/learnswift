@@ -14,7 +14,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var balls = 5
     
     var scoreLabel: SKLabelNode!
-    
     var score: Int = 0 {
         didSet {
             scoreLabel.text = "Score: \(score)"
@@ -22,7 +21,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     var editLabel: SKLabelNode!
-    
     var editingMode: Bool = false {
         didSet {
             if editingMode {
@@ -116,11 +114,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if objects.contains(editLabel) {
                 editingMode = !editingMode
+                //Reset number of balls
+                balls = 5
             } else {
                 if editingMode {
                     //Create a box
                     let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
                     let box = SKSpriteNode(color: RandomColor(), size: size)
+                    box.name = "box"
                     box.zRotation = RandomCGFloat(min: 0, max: 3)
                     box.position = location
                     
@@ -174,9 +175,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func collisionBetween(ball: SKNode, object: SKNode) {
-        if object.name == "good" {
+        //Destroy boxes after they are touched
+        if object.name == "box" {
+            object.removeFromParent()
+        } else if object.name == "good" {
             destroy(ball: ball)
             score += 1
+            balls += 1
         } else if object.name == "bad" {
             destroy(ball: ball)
             score -= 1
