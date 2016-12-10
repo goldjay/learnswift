@@ -110,7 +110,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let location = touch.location(in: self)
-            let objects = nodes(at: location)
+            let objects = nodes(at: location) //For multiple nodes possible
+            let touchedNode = self.atPoint(location) //For only one
             
             if objects.contains(editLabel) {
                 editingMode = !editingMode
@@ -118,17 +119,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 balls = 5
             } else {
                 if editingMode {
-                    //Create a box
-                    let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
-                    let box = SKSpriteNode(color: RandomColor(), size: size)
-                    box.name = "box"
-                    box.zRotation = RandomCGFloat(min: 0, max: 3)
-                    box.position = location
+                    //If you click on an object that is a box, remove it
+                    if(touchedNode.name == "box"){
+                        touchedNode.removeFromParent()
+                    }
                     
-                    box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
-                    //Box doesn't move when hit
-                    box.physicsBody!.isDynamic = false
-                    addChild(box)
+                    else{
+                        //Create a box
+                        let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
+                        let box = SKSpriteNode(color: RandomColor(), size: size)
+                        box.name = "box"
+                        box.zRotation = RandomCGFloat(min: 0, max: 3)
+                        box.position = location
+                        
+                        box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
+                        //Box doesn't move when hit
+                        box.physicsBody!.isDynamic = false
+                        addChild(box)
+                    }
                     
                 } else {
                     //Condition to restrict ball creation to top of the screen
