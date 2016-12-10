@@ -67,6 +67,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         editLabel.text = "Edit"
         editLabel.position = CGPoint(x: 80, y: 700)
         addChild(editLabel)
+        
+        
     }
     
     func makeBouncer(at position: CGPoint) {
@@ -125,17 +127,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                     
                     else{
-                        //Create a box
-                        let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
-                        let box = SKSpriteNode(color: RandomColor(), size: size)
-                        box.name = "box"
-                        box.zRotation = RandomCGFloat(min: 0, max: 3)
-                        box.position = location
-                        
-                        box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
-                        //Box doesn't move when hit
-                        box.physicsBody!.isDynamic = false
-                        addChild(box)
+                        if(location.y <= 650){
+                            //Create a box
+                            let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
+                            let box = SKSpriteNode(color: RandomColor(), size: size)
+                            box.name = "box"
+                            box.zRotation = RandomCGFloat(min: 0, max: 3)
+                            box.position = location
+                            
+                            box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
+                            //Box doesn't move when hit
+                            box.physicsBody!.isDynamic = false
+                            addChild(box)
+
+                            
+                        }
                     }
                     
                 } else {
