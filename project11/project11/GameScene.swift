@@ -13,6 +13,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Number of balls available
     var balls = 5
     
+    //Stores different items
+    var inventory = ["box", "box", "box", "box", "box"]
+    var buttons = [CustomSpriteNode]()
+    
     var scoreLabel: SKLabelNode!
     var score: Int = 0 {
         didSet {
@@ -67,8 +71,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         editLabel.text = "Edit"
         editLabel.position = CGPoint(x: 80, y: 700)
         addChild(editLabel)
-        
-        
     }
     
     func makeBouncer(at position: CGPoint) {
@@ -116,11 +118,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let touchedNode = self.atPoint(location) //For only one
             
             if objects.contains(editLabel) {
+                if(editLabel.text == "Edit"){
+                    //Create an inventory bar at the top of the screen
+                    makeInventory(at: CGPoint(x: 100, y:700))
+                    
+                    //Reset number of balls
+                    balls = 5
+                }
+                else{
+                    removeInventory()
+                }
                 editingMode = !editingMode
-                //Reset number of balls
-                balls = 5
+                
             } else {
                 if editingMode {
+        
                     //If you click on an object that is a box, remove it
                     if(touchedNode.name == "box"){
                         touchedNode.removeFromParent()
@@ -220,4 +232,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func makeInventory(at position: CGPoint) {
+        // Create inventory navigation buttons
+        let leftButton : CustomSpriteNode = CustomSpriteNode(color: SKColor.red, size: CGSize(width: 60, height: 44))
+        let rightButton : CustomSpriteNode = CustomSpriteNode(color: SKColor.red, size: CGSize(width: 60, height: 44))
+        
+        // Place inventory navigation buttons
+        leftButton.position = CGPoint(x: 200, y:720)
+        rightButton.position = CGPoint(x:560, y:720)
+        self.addChild(leftButton)
+        self.addChild(rightButton)
+        
+        buttons.append(leftButton)
+        buttons.append(rightButton)
+        
+        //Place items from the inventory item name array
+        renderItems(num: 1)
+    }
+    
+    
+    //Creates buttons for each inventory item beginning at the number given
+    func renderItems(num: Int){
+        var posx = 260
+        let posy = 720
+        
+        for index in 0...4 {
+            var id = num + index
+            if(id > 5) {
+                id -= 5
+            }
+            let midButton : CustomSpriteNode = CustomSpriteNode(color: SKColor.blue, size: CGSize(width: 60, height: 44))
+            midButton.id = id
+            midButton.position = CGPoint(x: posx, y: posy)
+            self.addChild(midButton)
+            buttons.append(midButton)
+            posx += 60
+        }
+    }
+    
+    func removeInventory() {
+        for button in buttons {
+            button.removeFromParent()
+        }
+    }
+    
 }
+
