@@ -128,6 +128,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     addChild(box)
                     
                 } else {
+                    //Generate a random number and create a ball of a different color
+                    
                     //Create a ball
                     let ball = SKSpriteNode(imageNamed: "ballred")
                     ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
@@ -155,6 +157,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func destroy(ball: SKNode) {
+        //EmitterNode creates particle effects
+        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
+            fireParticles.position = ball.position
+            addChild(fireParticles)
+        }
         //Removes the node from the game
         ball.removeFromParent()
     }
