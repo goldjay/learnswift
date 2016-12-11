@@ -13,7 +13,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Number of balls available
     var balls = 5
     
-    //Stores different items
+    var boxes = 10
+    
+    
+    //Inventory item storage
     var inventory = ["box", "box", "box", "box", "box"]
     var buttons = [CustomSpriteNode]()
     
@@ -21,6 +24,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var score: Int = 0 {
         didSet {
             scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
+    //For counting combination score for hitting many boxes
+    var comboLabel: SKLabelNode!
+    var combo: Int = 0 {
+        didSet {
+            comboLabel.text = "Combo: \(combo)"
         }
     }
     
@@ -71,6 +82,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         editLabel.text = "Edit"
         editLabel.position = CGPoint(x: 80, y: 700)
         addChild(editLabel)
+        
+        comboLabel = SKLabelNode(fontNamed: "ChalkDuster")
+        comboLabel.text = "Combo: 0"
+        comboLabel.horizontalAlignmentMode = .right
+        comboLabel.position = CGPoint(x: 700, y: 700)
+        addChild(comboLabel)
     }
     
     func makeBouncer(at position: CGPoint) {
@@ -120,7 +137,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if objects.contains(editLabel) {
                 if(editLabel.text == "Edit"){
                     //Create an inventory bar at the top of the screen
-                    makeInventory(at: CGPoint(x: 100, y:700))
+                    //makeInventory(at: CGPoint(x: 100, y:700))
                     
                     //Reset number of balls
                     balls = 5
@@ -136,10 +153,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //If you click on an object that is a box, remove it
                     if(touchedNode.name == "box"){
                         touchedNode.removeFromParent()
+                        boxes += 1
                     }
                     
                     else{
                         if(location.y <= 650){
+                            if(boxes > 0){
                             //Create a box
                             let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
                             let box = SKSpriteNode(color: RandomColor(), size: size)
@@ -151,14 +170,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             //Box doesn't move when hit
                             box.physicsBody!.isDynamic = false
                             addChild(box)
-
-                            
+                            boxes -= 1
+                            }
                         }
                     }
                     
                 } else {
                     //Condition to restrict ball creation to top of the screen
                     if(location.y > 650 && balls > 0){
+                        
                         //Generate a random number and create a ball of a different color
                         let ballNum = Int(arc4random_uniform(7) + 1)
                         var ballName = ""
@@ -189,7 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         //Set ball's detection to its collision
                         ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
                         //restituion = bounciness
-                        ball.physicsBody!.restitution = 0.4
+                        ball.physicsBody!.restitution = 0.5
                         ball.position = location
                         ball.name = "ball"
                         addChild(ball)
@@ -203,6 +223,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collisionBetween(ball: SKNode, object: SKNode) {
         //Destroy boxes after they are touched
         if object.name == "box" {
+            if(combo == 0){
+                combo += 1
+            }
+            else {
+                combo *= 2
+            }
             object.removeFromParent()
         } else if object.name == "good" {
             destroy(ball: ball)
@@ -222,6 +248,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         //Removes the node from the game
         ball.removeFromParent()
+        score += combo
+        combo = 0
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
