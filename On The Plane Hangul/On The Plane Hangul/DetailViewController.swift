@@ -59,9 +59,9 @@ class DetailViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         var title: String
         
+        //FOR DEBUGGING
         print("SENDER TAG")
         print(sender.tag)
-        
         print("CORRECT ANSWER: ")
         print(correctAnswer)
         

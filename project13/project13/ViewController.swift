@@ -23,13 +23,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Instafilter"
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(importPicture))
         
         
         context = CIContext()
         currentFilter = CIFilter(name: "CISepiaTone")
+        
+        title = currentFilter.name
     }
     
     func importPicture() {
@@ -66,9 +67,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func setFilter(action: UIAlertAction!) {
+        
         //Make sure we have an image
         guard currentImage != nil else { return }
         
+        title = "Instafilter"
         currentFilter = CIFilter(name: action.title!)
         
         let beginImage = CIImage(image: currentImage)
@@ -78,7 +81,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func save(_ sender: AnyObject) {
+        if(currentImage != nil){
         UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
         
     }
     @IBAction func intensityChanged(_ sender: AnyObject) {
