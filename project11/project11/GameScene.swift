@@ -86,7 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         comboLabel = SKLabelNode(fontNamed: "ChalkDuster")
         comboLabel.text = "Combo: 0"
         comboLabel.horizontalAlignmentMode = .right
-        comboLabel.position = CGPoint(x: 700, y: 700)
+        comboLabel.position = CGPoint(x: 980, y: 650)
         addChild(comboLabel)
     }
     
@@ -137,7 +137,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if objects.contains(editLabel) {
                 if(editLabel.text == "Edit"){
                     //Create an inventory bar at the top of the screen
-                    //makeInventory(at: CGPoint(x: 100, y:700))
+                    makeInventory(at: CGPoint(x: 100, y:700))
                     
                     //Reset number of balls
                     balls = 5
@@ -159,18 +159,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     else{
                         if(location.y <= 650){
                             if(boxes > 0){
-                            //Create a box
-                            let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
-                            let box = SKSpriteNode(color: RandomColor(), size: size)
-                            box.name = "box"
-                            box.zRotation = RandomCGFloat(min: 0, max: 3)
-                            box.position = location
+                                //Randomly decide if box will spin or now
+                                let spinChance = Int(arc4random_uniform(3) + 1)
+                                
+                                //Create a box
+                                let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
+                                let box = SKSpriteNode(color: RandomColor(), size: size)
+                                box.name = "box"
+                                box.zRotation = RandomCGFloat(min: 0, max: 3)
+                                box.position = location
+                                
+                                //Possibly change to start spinning at start
+                                if(spinChance == 1){
+                                    let spin = SKAction.rotate(byAngle: CGFloat.pi, duration: 10)
+                                    let spinForever = SKAction.repeatForever(spin)
+                                    box.run(spinForever)
+                                }
                             
-                            box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
-                            //Box doesn't move when hit
-                            box.physicsBody!.isDynamic = false
-                            addChild(box)
-                            boxes -= 1
+                                box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
+                                //Box doesn't move when hit
+                                box.physicsBody!.isDynamic = false
+                                
+                                addChild(box)
+                                boxes -= 1
                             }
                         }
                     }
@@ -223,7 +234,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collisionBetween(ball: SKNode, object: SKNode) {
         //Destroy boxes after they are touched
         if object.name == "box" {
-            if(combo == 0){
+            if(combo < 3){
                 combo += 1
             }
             else {

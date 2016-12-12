@@ -8,13 +8,26 @@
 
 import UIKit
 
-class Person: NSObject {
+//Added coding to be able to save in userDefaults
+class Person: NSObject, NSCoding {
     var name: String
     var image: String
     
     init(name: String, image: String) {
         self.name = name
         self.image = image 
+    }
+    
+    //Converts coded object back to name and image properties
+    required init(coder aDecoder: NSCoder) {
+        name = aDecoder.decodeObject(forKey: "name")  as! String
+        image = aDecoder.decodeObject(forKey: "image") as! String
+    }
+    
+    //Converts name and image into an object
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(image, forKey: "image")
     }
 
 }
