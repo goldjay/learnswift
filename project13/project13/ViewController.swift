@@ -71,13 +71,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         currentFilter = CIFilter(name: action.title!)
         
-        let beginImage = CIFilter(name: action.title)
+        let beginImage = CIImage(image: currentImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
         
         applyProcessing()
     }
     
     @IBAction func save(_ sender: AnyObject) {
+        UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         
     }
     @IBAction func intensityChanged(_ sender: AnyObject) {
@@ -86,13 +87,41 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func applyProcessing() {
-        //Sets filter value to be applied based on the intensity given from the slider
-        currentFilter.setValue(intensity.value, forKey: kCIInputIntensityKey)
+        
+        //Not all filters allow for intensity
+        //So we have different cases for the different inputs
+        let inputKeys = currentFilter.inputKeys
+        
+        if inputKeys.contains(kCIInputIntensityKey){
+            currentFilter.setValue(intensity.value, forKey: kCIInputIntensityKey)
+        }
+        if inputKeys.contains(kCIInputRadiusKey){
+            currentFilter.setValue(intensity.value * 200, forKey: kCIInputRadiusKey)
+        }
+        if inputKeys.contains(kCIInputScaleKey){
+            currentFilter.setValue(intensity.value * 10, forKey: kCIInputScaleKey)
+        }
+        if inputKeys.contains(kCIInputCenterKey){
+            currentFilter.setValue(CIVector(x: currentImage.size.width / 2, y: currentImage.size.height / 2), forKey: kCIInputCenterKey)
+        }
         
         if let cgimg = context.createCGImage(currentFilter.outputImage!, from: currentFilter.outputImage!.extent) {
             let processedImage = UIImage(cgImage: cgimg)
             imageView.image = processedImage
         }
+    }
+    
+    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer){
+        if let error = error {
+            //If we got back an error
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+                present(ac, animated: true)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
