@@ -9,7 +9,7 @@
 import UIKit
 import GameplayKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
     
     var allWords = [String]()
     var wordCount = 0
@@ -18,10 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //UIAlertController with space for the user to make an answer
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(startGame))
         
         //Loads words from start.text into the allWords array
         if let startWordsPath = Bundle.main.path(forResource: "start", ofType: "txt") {
@@ -48,11 +45,25 @@ class ViewController: UIViewController {
     }
     
     func startGame(num: Int) {
+        
+        //Set title to the number of blank spaces for letters
+        //title = String(repeating: "_", count: allWords[wordCount].characters.count)
         title = allWords[wordCount]
-        //Clears the words we used in the previous game, if any
+        
+        allWords = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: allWords) as! [String]
+        title = allWords[0]
         usedLetters.removeAll(keepingCapacity: true)
-        //tableView.reloadData()
-        wordCount += 1
+        tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return usedLetters.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
+        cell.textLabel?.text = "\(usedLetters[indexPath.row])"
+        return cell
     }
     
     func promptForAnswer() {
@@ -80,43 +91,31 @@ class ViewController: UIViewController {
     
     //Change to handle errors
     func submit(answer: String) {
-        let lowerAnswer = answer.lowercased()
+        //let lowerAnswer = answer.lowercased()
         
         let errorTitle: String
         let errorMessage: String
         
-        if isPossible(word: lowerAnswer) {
-            if isOriginal(word: lowerAnswer) {
-                if isReal(word: lowerAnswer) {
-                    usedWords.insert(answer, at: 0)
-                    
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    //Insert a row into the table view instead of using reloadData()
-                    tableView.insertRows(at: [indexPath], with: .automatic)
-                    return
-                }
-                else {
-                    if(lowerAnswer.characters.count < 3) {
-                        errorTitle = "Word is too short"
-                        errorMessage = "We don't want any tiny words. Throw it back!"
-                    }
-                    else {
-                        errorTitle = "Word not recognized"
-                        errorMessage = "You can't just make them up, you know!"
-                    }
-                }
-            }
-            else {
-                errorTitle = "Word used already"
-                errorMessage = "Be more original!"
-            }
-        }
-        else {
-            errorTitle = "Word not possible"
-            errorMessage = "You can't spell that word from '\(title!.lowercased())'!"
+        //If it's only one character
+        if answer.characters.count == 1 {
+            //If that character has been guessed before
+            
+            //If it hasn't been guessed before, but isn't in the word
+            usedLetters.insert(answer[answer.startIndex], at: 0)
+            let indexPath = IndexPath(row: 0, section: 0)
+            //Insert a row into the table view instead of using reloadData()
+            tableView.insertRows(at: [indexPath], with: .automatic)
+            return
+            
+        } else {
+           errorTitle = "Not one character"
+            errorMessage = "Only one character at a time please"
         }
         
-        showErrorMessage(title: errorTitle, message: errorMessage)
+        //Error message for incorrect input
+        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
         
     }
     
