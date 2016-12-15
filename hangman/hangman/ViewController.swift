@@ -13,7 +13,8 @@ class ViewController: UITableViewController {
     
     var allWords = [String]()
     var usedLetters = [String]() //Used string, but each one is only one char
-    var correctAnswer = "";
+    var correctAnswer = ""
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,6 +113,9 @@ class ViewController: UITableViewController {
                     let indexPath = IndexPath(row: 0, section: 0)
                     //Insert a row into the table view instead of using reloadData()
                     tableView.insertRows(at: [indexPath], with: .automatic)
+                    
+                    //Check for lose condition
+                    
                 }
                 
                 //Check if all of the letters have been guessed
