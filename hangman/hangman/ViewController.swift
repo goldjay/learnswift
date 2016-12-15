@@ -12,7 +12,6 @@ import GameplayKit
 class ViewController: UITableViewController {
     
     var allWords = [String]()
-    var wordCount = 0
     var usedLetters = [String]() //Used string, but each one is only one char
     var correctAnswer = "";
 
@@ -35,9 +34,7 @@ class ViewController: UITableViewController {
         }
         allWords = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: allWords) as! [String]
         
-        print(allWords)
-        
-        startGame(num: wordCount)
+        startGame()
     }
 
     func loadDefaultWords() -> [String] {
@@ -45,7 +42,7 @@ class ViewController: UITableViewController {
         return words
     }
     
-    func startGame(num: Int) {
+    func startGame() {
         
         allWords = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: allWords) as! [String]
         correctAnswer = allWords[0]
@@ -118,6 +115,20 @@ class ViewController: UITableViewController {
                 }
                 
                 //Check if all of the letters have been guessed
+                // If it still contains a '_'
+                if(title?.contains("_"))!{
+                    print(correctAnswer)
+                    return
+                }
+                else{
+                    //You win! Give user the option
+                    let ac = UIAlertController(title: "You got it!", message: "The word was: " + title!, preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .default) { [unowned self, ac] _ in
+                        
+                        self.startGame()
+                    })
+                    present(ac, animated: true)
+                }
                 return
             }
         } else {
