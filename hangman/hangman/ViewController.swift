@@ -13,7 +13,8 @@ class ViewController: UITableViewController {
     
     var allWords = [String]()
     var wordCount = 0
-    var usedLetters = [Character]()
+    var usedLetters = [String]() //Used string, but each one is only one char
+    var correctAnswer = "";
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,11 @@ class ViewController: UITableViewController {
         title = allWords[wordCount]
         
         allWords = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: allWords) as! [String]
+        
+        //CHANGE TO BLANK SPACES
         title = allWords[0]
+        correctAnswer = allWords[0]
+        
         usedLetters.removeAll(keepingCapacity: true)
         tableView.reloadData()
     }
@@ -99,14 +104,25 @@ class ViewController: UITableViewController {
         //If it's only one character
         if answer.characters.count == 1 {
             //If that character has been guessed before
-            
-            //If it hasn't been guessed before, but isn't in the word
-            usedLetters.insert(answer[answer.startIndex], at: 0)
-            let indexPath = IndexPath(row: 0, section: 0)
-            //Insert a row into the table view instead of using reloadData()
-            tableView.insertRows(at: [indexPath], with: .automatic)
-            return
-            
+            if(usedLetters.contains(answer)){
+                errorTitle = "Already guessed"
+                errorMessage = "Can't you see the word at the top?"
+            }
+            else{
+                //If it hasn't been guessed before, but isn't in the word
+                if(correctAnswer.contains(answer)){
+                    //
+                    usedLetters.insert(answer, at: 0)
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    //Insert a row into the table view instead of using reloadData()
+                    tableView.insertRows(at: [indexPath], with: .automatic)
+                    return
+                }
+                else{
+                    
+                }
+                return
+            }
         } else {
            errorTitle = "Not one character"
             errorMessage = "Only one character at a time please"
