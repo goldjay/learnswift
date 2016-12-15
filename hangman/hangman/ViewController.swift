@@ -47,15 +47,10 @@ class ViewController: UITableViewController {
     
     func startGame(num: Int) {
         
-        //Set title to the number of blank spaces for letters
-        //title = String(repeating: "_", count: allWords[wordCount].characters.count)
-        title = allWords[wordCount]
-        
         allWords = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: allWords) as! [String]
-        
-        //CHANGE TO BLANK SPACES
-        title = allWords[0]
         correctAnswer = allWords[0]
+        
+        title = String(repeating: "_", count: correctAnswer.characters.count)
         
         usedLetters.removeAll(keepingCapacity: true)
         tableView.reloadData()
@@ -85,7 +80,7 @@ class ViewController: UITableViewController {
             //Everything after "in" is the closure
             
             let answer = ac.textFields![0] //Pulls answer from text field
-            self.submit(answer: answer.text!)
+            self.submit(guess: answer.text!)
         }
         
         //Adds an action to the UIAlertController
@@ -95,32 +90,34 @@ class ViewController: UITableViewController {
     }
     
     //Change to handle errors
-    func submit(answer: String) {
+    func submit(guess: String) {
         //let lowerAnswer = answer.lowercased()
         
         let errorTitle: String
         let errorMessage: String
         
         //If it's only one character
-        if answer.characters.count == 1 {
+        if guess.characters.count == 1 {
             //If that character has been guessed before
-            if(usedLetters.contains(answer)){
+            if(usedLetters.contains(guess)){
                 errorTitle = "Already guessed"
                 errorMessage = "Can't you see the word at the top?"
             }
             else{
-                //If it hasn't been guessed before, but isn't in the word
-                if(correctAnswer.contains(answer)){
-                    //
-                    usedLetters.insert(answer, at: 0)
+                //If it hasn't been guessed and its in the word
+                if(correctAnswer.contains(guess)){
+                    //Replace the letters within the answer
+                    title = replaceChars(guess: Character(guess), blank: title!, correctAnswer: correctAnswer)
+                    
+                }
+                else{
+                    usedLetters.insert(guess, at: 0)
                     let indexPath = IndexPath(row: 0, section: 0)
                     //Insert a row into the table view instead of using reloadData()
                     tableView.insertRows(at: [indexPath], with: .automatic)
-                    return
                 }
-                else{
-                    
-                }
+                
+                //Check if all of the letters have been guessed
                 return
             }
         } else {
@@ -133,6 +130,21 @@ class ViewController: UITableViewController {
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
         
+    }
+    
+    
+    //Replaces all instances in the blank with the guess
+    func replaceChars(guess: Character, blank: String, correctAnswer: String) -> String{
+        var temp = ""
+        for index in blank.characters.indices{
+            if(correctAnswer[index] == guess){
+                temp += String(guess)
+            }
+            else{
+                temp += String(blank[index])
+            }
+        }
+        return temp
     }
     
     override func didReceiveMemoryWarning() {
