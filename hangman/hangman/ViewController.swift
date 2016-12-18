@@ -14,6 +14,7 @@ class ViewController: UITableViewController {
     var allWords = [String]()
     var usedLetters = [String]() //Used string, but each one is only one char
     var correctAnswer = ""
+    var count = 10
     
 
     override func viewDidLoad() {
@@ -99,7 +100,7 @@ class ViewController: UITableViewController {
             //If that character has been guessed before
             if(usedLetters.contains(guess)){
                 errorTitle = "Already guessed"
-                errorMessage = "Can't you see the word at the top?"
+                errorMessage = "Can't you see the letters on the side?"
             }
             else{
                 //If it hasn't been guessed and its in the word
@@ -115,13 +116,24 @@ class ViewController: UITableViewController {
                     tableView.insertRows(at: [indexPath], with: .automatic)
                     
                     //Check for lose condition
+                    if usedLetters.count == count {
+                        let ac = UIAlertController(title: "Looks like you didn't get it.", message: "The word was: " + correctAnswer, preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "Restart", style: .default) { [unowned self, ac] _ in
+                            
+                            self.startGame()
+                        })
+                        present(ac, animated: true)
+
+                    }
+                    //Check for lose condition
+                    //ADD a variable to count number of misses
+                    //Maybe add easy, med, hard difficulties
                     
                 }
                 
                 //Check if all of the letters have been guessed
                 // If it still contains a '_'
                 if(title?.contains("_"))!{
-                    print(correctAnswer)
                     return
                 }
                 else{
