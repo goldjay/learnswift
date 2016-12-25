@@ -1,5 +1,5 @@
-ㅏ: ah
-ㅓ: eo/uh
-ㅡ: eu
-ㅣ: i
-ㅗ: o/oh
+ㅏ:ah
+ㅓ:eo/uh
+ㅡ:eu
+ㅣ:i
+ㅗ:o/oh

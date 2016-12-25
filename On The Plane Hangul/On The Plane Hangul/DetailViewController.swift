@@ -15,29 +15,26 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
     
-    var selectedDeck: [Card] = []
+    var num: Int = 0 
     
     var correctAnswer: Int = 0
     var numAnswered: Int = 0
     var numCorrect: Int = 0
     var numWrong: Int = 0
+    var message = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         print("MADE IT TO THE DETAIL")
-        print(selectedDeck)
-        for a in selectedDeck {
-            print(a.question)
-            print(a.answer)
-            
-        }
+        print(num)
         
         askQuestion()
     }
     
     func askQuestion(action: UIAlertAction! = nil) {
+        var selectedDeck = decks[num]!.cards
         //Shuffle cards in the deck
         //Shuffle Q and A's (Maybe move to detailView)
         let shuffledDeck = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: selectedDeck) as! [Card]
@@ -77,11 +74,23 @@ class DetailViewController: UIViewController {
         }
         
         numAnswered += 1
-        //Ask if they want to continue every 10 questions
-        if numAnswered % 10 == 0{
-            let ac = UIAlertController(title: title, message: "You have answered \(numCorrect) out of \(numAnswered) questions correct.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Continue?", style: .default, handler: askQuestion))
+        //If have have answered enough questions (CHANGED FOR DEBUG)
+        if numAnswered == 1 {
+            //If you did well enough, you can move to the next level
+            if Double(numCorrect / numAnswered) >= 0.9 {
+                decks[num]?.completed = true
+                message = "You did it! You can move on to the next section if you like."
+            }
+            else{
+                //Message about trying harder
+                message = "You have answered \(numCorrect) out of \(numAnswered) questions correct. I think you could use more practice."
+            }
+            
+            
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Okay", style: .default, handler: askQuestion))
             present(ac, animated: true)
+            
         }
         askQuestion()
         
