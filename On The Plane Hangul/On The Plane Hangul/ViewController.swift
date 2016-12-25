@@ -10,14 +10,13 @@ import UIKit
 
 class ViewController: UITableViewController {
     var levels = 10
-    var currentDeck = [Card]()
+    var currentDeck: [[String]] = [[]]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //For saving data about the user's deck
-        let defaults = UserDefaults.standard
+        
         if let savedDecks = defaults.object(forKey: "decks") as? Data {
             decks = NSKeyedUnarchiver.unarchiveObject(with: savedDecks) as! [Deck]
         }
@@ -42,7 +41,7 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //Clear the currentDeck
-        currentDeck = [Card]()
+        currentDeck = []
         
         //Check if there is not a deck in decks, otherwise create a new one
         if(decks[indexPath.row + 1] == nil){
@@ -57,7 +56,6 @@ class ViewController: UITableViewController {
                     //Split Q and A's by linebreak
                     let lines = levelContents.components(separatedBy: CharacterSet.newlines)
                         .filter{ !$0.isEmpty }
-                    //let lines = levelContents.components(separatedBy: "\n")
                     
                     print(lines)
                     
@@ -69,13 +67,13 @@ class ViewController: UITableViewController {
                         print(parts[0])
                         print(parts[1])
                         
-                        let card = Card(question: parts[0], answer: parts[1])
+                        let card = [parts[0],parts[1]]
                         currentDeck.append(card)
                     }
                     //Maybe save this only when the deck has been completed
                     let deck = Deck(cards: currentDeck)
                     decks[indexPath.row] = deck
-                    print(decks)
+                    
                 }
             }
             else{

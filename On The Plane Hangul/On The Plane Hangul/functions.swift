@@ -10,6 +10,8 @@ import Foundation
 
 //Default value for decks
 var decks = [Deck?](repeating: nil, count: 10) //Array of arrays of cards (hardcode bad)
+//For saving data about the user's deck
+let defaults = UserDefaults.standard
 
 //Saves array as an object to userDefaults
 func save() {

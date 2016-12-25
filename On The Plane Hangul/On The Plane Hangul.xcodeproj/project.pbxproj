@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		591C55651DDFE46E0008D229 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 591C55641DDFE46E0008D229 /* level1.txt */; };
 		591C55671DDFE9D90008D229 /* classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591C55661DDFE9D90008D229 /* classes.swift */; };
+		5998A30E1E0FD6BB0066C2A8 /* level4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5998A30D1E0FD6BB0066C2A8 /* level4.txt */; };
+		59A0986C1E0FD59F0034C004 /* level3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59A0986B1E0FD59F0034C004 /* level3.txt */; };
 		59AC2B001DA92DD700600A34 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC2AFF1DA92DD700600A34 /* DetailViewController.swift */; };
 		59DAC9C11E0D5EB800A152C1 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAC9C01E0D5EB800A152C1 /* functions.swift */; };
 		59DAC9C71E0D6C4800A152C1 /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59DAC9C61E0D6C4800A152C1 /* level2.txt */; };
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		591C55641DDFE46E0008D229 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = level1.txt; sourceTree = "<group>"; };
 		591C55661DDFE9D90008D229 /* classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = classes.swift; sourceTree = "<group>"; };
+		5998A30D1E0FD6BB0066C2A8 /* level4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level4.txt; sourceTree = "<group>"; };
+		59A0986B1E0FD59F0034C004 /* level3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level3.txt; sourceTree = "<group>"; };
 		59AC2AFF1DA92DD700600A34 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		59DAC9C01E0D5EB800A152C1 /* functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
 		59DAC9C61E0D6C4800A152C1 /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = level2.txt; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 				59AC2AFF1DA92DD700600A34 /* DetailViewController.swift */,
 				591C55641DDFE46E0008D229 /* level1.txt */,
 				59DAC9C61E0D6C4800A152C1 /* level2.txt */,
+				59A0986B1E0FD59F0034C004 /* level3.txt */,
+				5998A30D1E0FD6BB0066C2A8 /* level4.txt */,
 				591C55661DDFE9D90008D229 /* classes.swift */,
 				59DAC9C01E0D5EB800A152C1 /* functions.swift */,
 				59EE31C81DA9018400F8FB51 /* Assets.xcassets */,
@@ -139,10 +145,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				59EE31CC1DA9018400F8FB51 /* LaunchScreen.storyboard in Resources */,
+				59A0986C1E0FD59F0034C004 /* level3.txt in Resources */,
 				591C55651DDFE46E0008D229 /* level1.txt in Resources */,
 				59EE31C91DA9018400F8FB51 /* Assets.xcassets in Resources */,
 				59EE31C71DA9018400F8FB51 /* Main.storyboard in Resources */,
 				59DAC9C71E0D6C4800A152C1 /* level2.txt in Resources */,
+				5998A30E1E0FD6BB0066C2A8 /* level4.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

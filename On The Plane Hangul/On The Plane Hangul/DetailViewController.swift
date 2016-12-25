@@ -20,7 +20,6 @@ class DetailViewController: UIViewController {
     var correctAnswer: Int = 0
     var numAnswered: Int = 0
     var numCorrect: Int = 0
-    var numWrong: Int = 0
     var message = ""
 
     override func viewDidLoad() {
@@ -30,14 +29,16 @@ class DetailViewController: UIViewController {
         print("MADE IT TO THE DETAIL")
         print(num)
         
+        //Check if the user has seen the deck. If not, show tutorial
+        
         askQuestion()
     }
     
     func askQuestion(action: UIAlertAction! = nil) {
-        var selectedDeck = decks[num]!.cards
+        let selectedDeck = decks[num]!.cards
         //Shuffle cards in the deck
         //Shuffle Q and A's (Maybe move to detailView)
-        let shuffledDeck = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: selectedDeck) as! [Card]
+        let shuffledDeck = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: selectedDeck) as! [[String]]
         
         //Choose a random answer
         correctAnswer = Int(arc4random_uniform(3))
@@ -45,12 +46,12 @@ class DetailViewController: UIViewController {
         print(correctAnswer)
         
         
-        button1.setTitle(shuffledDeck[0].answer, for: UIControlState.normal)
-        button2.setTitle(shuffledDeck[1].answer, for: UIControlState.normal)
-        button3.setTitle(shuffledDeck[2].answer, for: UIControlState.normal)
+        button1.setTitle(shuffledDeck[0][1], for: UIControlState.normal)
+        button2.setTitle(shuffledDeck[1][1], for: UIControlState.normal)
+        button3.setTitle(shuffledDeck[2][1], for: UIControlState.normal)
         
         
-        title = shuffledDeck[correctAnswer].question
+        title = shuffledDeck[correctAnswer][0]
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -64,13 +65,12 @@ class DetailViewController: UIViewController {
         
         if sender.tag == correctAnswer {
             print("YOU GOT ONE CORRECT")
-            title = "Correct"
+            //title = "Correct"
             numCorrect += 1
             print("NUMBER OF CORRECT ANSWERS:")
             print(numCorrect)
         } else {
-            title = "Wrong"
-            numWrong += 1
+            //title = "Wrong"
         }
         
         numAnswered += 1
@@ -79,7 +79,7 @@ class DetailViewController: UIViewController {
             //If you did well enough, you can move to the next level
             if Double(numCorrect / numAnswered) >= 0.9 {
                 decks[num]?.completed = true
-                message = "You did it! You can move on to the next section if you like."
+                message = "You have answered \(numCorrect) out of \(numAnswered) questions correct. You can move on to the next section if you like."
             }
             else{
                 //Message about trying harder
@@ -87,10 +87,12 @@ class DetailViewController: UIViewController {
             }
             
             
-            let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let ac = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Okay", style: .default, handler: askQuestion))
             present(ac, animated: true)
-            
+            numAnswered = 0
+            correctAnswer = 0
+            //save()
         }
         askQuestion()
         

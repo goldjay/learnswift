@@ -229,11 +229,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "On The Plane Hangul/classes.swift"
-            timestampString = "504327944.084726"
+            timestampString = "504347109.374973"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "Deck"
             landmarkType = "3">
          </BreakpointContent>
@@ -257,16 +257,16 @@
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "On_The_Plane_Hangul.ViewController.currentDeck.getter : Swift.Array&lt;On_The_Plane_Hangul.Card&gt;"
+                  symbolName = "On_The_Plane_Hangul.ViewController.currentDeck.setter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
                   moduleName = "On The Plane Hangul"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jaysteingold/Desktop/learnswift/On%20The%20Plane%20Hangul/On%20The%20Plane%20Hangul/ViewController.swift"
-                  timestampString = "504328190.254633"
+                  timestampString = "504347110.448748"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "35">
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "188">
                </Location>
                <Location
                   shouldBeEnabled = "No"
@@ -276,12 +276,12 @@
                   moduleName = "On The Plane Hangul"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jaysteingold/Desktop/learnswift/On%20The%20Plane%20Hangul/On%20The%20Plane%20Hangul/ViewController.swift"
-                  timestampString = "504328190.258807"
+                  timestampString = "504347110.451118"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "102">
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "31">
                </Location>
                <Location
                   shouldBeEnabled = "No"
@@ -291,12 +291,12 @@
                   moduleName = "On The Plane Hangul"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jaysteingold/Desktop/learnswift/On%20The%20Plane%20Hangul/On%20The%20Plane%20Hangul/ViewController.swift"
-                  timestampString = "504328190.260325"
+                  timestampString = "504347110.453314"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "169">
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "72">
                </Location>
                <Location
                   shouldBeEnabled = "No"
@@ -306,12 +306,12 @@
                   moduleName = "On The Plane Hangul"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jaysteingold/Desktop/learnswift/On%20The%20Plane%20Hangul/On%20The%20Plane%20Hangul/ViewController.swift"
-                  timestampString = "504328190.26175"
+                  timestampString = "504347110.455557"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "102">
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "31">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -494,11 +494,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "On The Plane Hangul/DetailViewController.swift"
-            timestampString = "504330192.114949"
+            timestampString = "504350578.070489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "askQuestion(action:)"
             landmarkType = "7">
             <Locations>
@@ -533,6 +533,38 @@
                   offsetFromSymbolStart = "2608">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On The Plane Hangul/DetailViewController.swift"
+            timestampString = "504350578.070489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "askQuestion(action:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On The Plane Hangul/classes.swift"
+            timestampString = "504349803.760073"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "encode(with:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

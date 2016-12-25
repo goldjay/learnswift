@@ -1,0 +1,8 @@
+자:ja
+하:ha
+가:ga
+나:na
+다:da
+라:ra
+마:ma
+바:ba
