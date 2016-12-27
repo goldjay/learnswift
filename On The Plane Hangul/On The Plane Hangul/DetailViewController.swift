@@ -15,7 +15,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
     
-    var num: Int = 0 
+    var selectedDeck: [[String]] = [[String]]()
+    
     
     var correctAnswer: Int = 0
     var numAnswered: Int = 0
@@ -25,17 +26,15 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         print("MADE IT TO THE DETAIL")
-        print(num)
+        print(selectedDeck)
         
         //Check if the user has seen the deck. If not, show tutorial
         
         askQuestion()
     }
-    
+
     func askQuestion(action: UIAlertAction! = nil) {
-        let selectedDeck = decks[num]!.cards
         //Shuffle cards in the deck
         //Shuffle Q and A's (Maybe move to detailView)
         let shuffledDeck = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: selectedDeck) as! [[String]]
@@ -53,9 +52,9 @@ class DetailViewController: UIViewController {
         
         title = shuffledDeck[correctAnswer][0]
     }
-    
+
+ 
     @IBAction func buttonTapped(_ sender: UIButton) {
-        var title: String
         
         //FOR DEBUGGING
         print("SENDER TAG")
@@ -65,12 +64,9 @@ class DetailViewController: UIViewController {
         
         if sender.tag == correctAnswer {
             print("YOU GOT ONE CORRECT")
-            //title = "Correct"
             numCorrect += 1
             print("NUMBER OF CORRECT ANSWERS:")
             print(numCorrect)
-        } else {
-            //title = "Wrong"
         }
         
         numAnswered += 1
@@ -78,7 +74,7 @@ class DetailViewController: UIViewController {
         if numAnswered == 1 {
             //If you did well enough, you can move to the next level
             if Double(numCorrect / numAnswered) >= 0.9 {
-                decks[num]?.completed = true
+                //decks[num]?.completed = true
                 message = "You have answered \(numCorrect) out of \(numAnswered) questions correct. You can move on to the next section if you like."
             }
             else{
@@ -88,13 +84,18 @@ class DetailViewController: UIViewController {
             
             
             let ac = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Okay", style: .default, handler: askQuestion))
+            ac.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
             present(ac, animated: true)
             numAnswered = 0
             correctAnswer = 0
-            //save()
+            
+            //Move back
+            navigationController?.popViewController(animated: true)
+            //Change deck's completed to true
+            
+    
         }
-        askQuestion()
+        //askQuestion()
         
         
     }

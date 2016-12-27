@@ -12,13 +12,23 @@ class ViewController: UITableViewController {
     var levels = 10
     var currentDeck: [[String]] = [[]]
     
+    //Default value for decks
+    var decks = [Deck]()
+    
+    //For saving data about the user's deck
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let defaults = UserDefaults.standard
+        
+        self.tableView.backgroundColor = UIColor.blue
+        self.tableView.backgroundView?.backgroundColor = UIColor.blue
         
         if let savedDecks = defaults.object(forKey: "decks") as? Data {
             decks = NSKeyedUnarchiver.unarchiveObject(with: savedDecks) as! [Deck]
+            print("THERES A SAVED DECK!")
         }
     }
     
@@ -33,6 +43,8 @@ class ViewController: UITableViewController {
     
     override func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quiz", for: indexPath)
+        cell.backgroundColor = UIColor.clear
+        
         cell.textLabel?.text = "Level " + String(indexPath.row + 1)
         cell.tag = indexPath.row + 1
         return cell
@@ -42,11 +54,11 @@ class ViewController: UITableViewController {
         
         //Clear the currentDeck
         currentDeck = []
+        print("DECK COUNT: ")
+        print(decks.count)
         
         //Check if there is not a deck in decks, otherwise create a new one
-        if(decks[indexPath.row + 1] == nil){
-            print("THIS IS THE INDEX PATH ROW:")
-            print(indexPath.row + 1)
+        if(decks.count < indexPath.row + 1){
             
             //Find and load level string from the disk
             if let levelFilePath = Bundle.main.path(forResource: "level\(indexPath.row + 1)", ofType: "txt") {
@@ -57,8 +69,6 @@ class ViewController: UITableViewController {
                     let lines = levelContents.components(separatedBy: CharacterSet.newlines)
                         .filter{ !$0.isEmpty }
                     
-                    print(lines)
-                    
                     //Enumerated gives us the position of each item in the lines array
                     for line in lines{
                         //Splits each line into answer and clue
@@ -68,11 +78,18 @@ class ViewController: UITableViewController {
                         print(parts[1])
                         
                         let card = [parts[0],parts[1]]
+                        print(card)
                         currentDeck.append(card)
                     }
+                    
+                    print("HERES THE CURRENT DECK!")
+                    print(currentDeck)
                     //Maybe save this only when the deck has been completed
                     let deck = Deck(cards: currentDeck)
-                    decks[indexPath.row] = deck
+                    decks.append(deck)
+                    print("HERES THE DECKS NOW!!")
+                    print(decks)
+                    save()
                     
                 }
             }
@@ -92,16 +109,19 @@ class ViewController: UITableViewController {
             *
             */
             
+            //Send deck number for reference to detailView
             
+            //Add condition to check if the deck has been completed.
+            //If not, go to tutorialView first
             
-            //If it's not the first deck
-            //Check if the one before it exists and if it has been completed
-            if(indexPath.row != 0 && decks[indexPath.row - 1] != nil && decks[indexPath.row - 1]?.completed == false){
-                errorAlert(message: "You're going to have to finish the levels before this one")
+            //Check if we have already completed
+            if(indexPath.row == 0 || decks[indexPath.row - 1].completed == true){
+                vc.selectedDeck = decks[indexPath.row].cards
+                print(vc.selectedDeck)
+                navigationController?.pushViewController(vc, animated: true)
+            } else{
+                errorAlert(message: "You should finish the levels before this one!")
             }
-            
-            vc.num = indexPath.row
-            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -111,6 +131,15 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
         
     }
+    
+    //Saves array as an object to userDefaults
+    func save() {
+        let savedData = NSKeyedArchiver.archivedData(withRootObject: decks)
+        let defaults = UserDefaults.standard
+        defaults.set(savedData, forKey: "decks")
+    }
+    
+    
     
     
 }

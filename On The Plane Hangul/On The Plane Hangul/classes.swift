@@ -53,7 +53,10 @@ class Deck: NSObject, NSCoding {
     }
     
     required init(coder aDecoder: NSCoder) {
-        cards = aDecoder.decodeObject(forKey: "cards") as! [[String]]
+        print("DECODING!")
+        
+        cards = aDecoder.decodeObject(forKey: "cards") as?
+            [[String]] ?? [[String]]()
         highScore = aDecoder.decodeObject(forKey: "highScore") as? Int ?? aDecoder.decodeInteger(forKey: "highScore")
         completed = aDecoder.decodeObject(forKey: "completed") as? Bool ?? aDecoder.decodeBool(forKey: "completed")
     }
@@ -62,8 +65,8 @@ class Deck: NSObject, NSCoding {
         print("ENCODING")
         
         //aCoder.encode(cards, forKey: "cards")
-        //aCoder.encode(highScore, forKey: "highScore")
-        //aCoder.encode(completed, forKey: "completed")
+        aCoder.encode(highScore, forKey: "highScore")
+        aCoder.encode(completed, forKey: "completed")
         
         print("Deck encoded!")
     }
