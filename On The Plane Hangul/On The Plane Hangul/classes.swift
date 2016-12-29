@@ -64,7 +64,7 @@ class Deck: NSObject, NSCoding {
     func encode(with aCoder: NSCoder) {
         print("ENCODING")
         
-        //aCoder.encode(cards, forKey: "cards")
+        aCoder.encode(cards, forKey: "cards")
         aCoder.encode(highScore, forKey: "highScore")
         aCoder.encode(completed, forKey: "completed")
         

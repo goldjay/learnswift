@@ -9,13 +9,21 @@
 import UIKit
 import GameplayKit
 
+//Can declare in a separate file
+protocol sendBack {
+    func setFinishedDeck(viewedDeck: Deck)
+}
+
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
     
-    var selectedDeck: [[String]] = [[String]]()
+    var selectedDeck: Deck?
+    var num: Int?
+    
+    var sendBack: sendBack?
     
     
     var correctAnswer: Int = 0
@@ -37,7 +45,8 @@ class DetailViewController: UIViewController {
     func askQuestion(action: UIAlertAction! = nil) {
         //Shuffle cards in the deck
         //Shuffle Q and A's (Maybe move to detailView)
-        let shuffledDeck = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: selectedDeck) as! [[String]]
+        let cards = selectedDeck?.cards
+        let shuffledDeck = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: cards!) as! [[String]]
         
         //Choose a random answer
         correctAnswer = Int(arc4random_uniform(3))
@@ -76,6 +85,7 @@ class DetailViewController: UIViewController {
             if Double(numCorrect / numAnswered) >= 0.9 {
                 //decks[num]?.completed = true
                 message = "You have answered \(numCorrect) out of \(numAnswered) questions correct. You can move on to the next section if you like."
+                selectedDeck?.completed = true
             }
             else{
                 //Message about trying harder
@@ -85,14 +95,15 @@ class DetailViewController: UIViewController {
             
             let ac = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            
+            //Add option to continue or to go back to root
+            
             present(ac, animated: true)
             numAnswered = 0
             correctAnswer = 0
             
-            //Move back
-            navigationController?.popViewController(animated: true)
-            //Change deck's completed to true
-            
+            //Send info back
+            sendBack?.setFinishedDeck(viewedDeck: selectedDeck!)
     
         }
         //askQuestion()
