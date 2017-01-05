@@ -11,7 +11,7 @@ import GameplayKit
 
 //Can declare in a separate file
 protocol sendBack {
-    func setFinishedDeck(viewedDeck: Deck)
+    func setFinishedDeck(viewedDeck: Deck, num: Int)
 }
 
 class DetailViewController: UIViewController {
@@ -46,6 +46,9 @@ class DetailViewController: UIViewController {
         //Shuffle cards in the deck
         //Shuffle Q and A's (Maybe move to detailView)
         let cards = selectedDeck?.cards
+        
+        
+        //Possibly change to not shuffle every time
         let shuffledDeck = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: cards!) as! [[String]]
         
         //Choose a random answer
@@ -103,7 +106,7 @@ class DetailViewController: UIViewController {
             correctAnswer = 0
             
             //Send info back
-            sendBack?.setFinishedDeck(viewedDeck: selectedDeck!)
+            sendBack?.setFinishedDeck(viewedDeck: selectedDeck!, num: num!)
     
         }
         //askQuestion()

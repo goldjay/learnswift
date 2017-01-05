@@ -83,7 +83,7 @@ class ViewController: UITableViewController, sendBack {
                         //Splits each line into answer and clue
                         let parts = line.components(separatedBy: ":")
                         
-                        let card = [parts[0],parts[1]]
+                        let card = [parts[0],parts[1], parts[2]]
                         print(card)
                         currentDeck.append(card)
                     }
@@ -106,48 +106,38 @@ class ViewController: UITableViewController, sendBack {
                 if let vc = storyboard?.instantiateViewController(withIdentifier: "Tutorial") as? TutorialViewController {
                     
                     //Get some tutorial text based on the deck
-                    vc.c = "A"
-                    vc.ex = "You know, like Apple?"
-                    navigationController?.pushViewController(vc, animated: true)
-                }
-            }
-            
-            
-            
-   /*
-            //Present detail View Controller
-            //Names the view controller we want to navigate to
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
-                
-                //For sending data back
-                vc.sendBack = self
-                
-                print("HERE ARE THE DECKS:")
-                print(decks)
-                
-                
-                /* FOR THE FUTURE
-                 * Check database if there is a deck already made
-                 * If so, use that deck, otherwise, create a new one
-                 *
-                 */
-                
-                //Send deck number for reference to detailView
-                
-                //Add condition to check if the deck has been completed.
-                //If not, go to tutorialView first
-                
-                //Check if we have already completed
-                if(indexPath.row == 0 || decks[indexPath.row - 1].completed == true){
-                    vc.selectedDeck = decks[indexPath.row]
+                    vc.deck = decks[indexPath.row]
                     vc.num = indexPath.row
-                    print(vc.selectedDeck)
                     navigationController?.pushViewController(vc, animated: true)
-                } else{
-                    errorAlert(message: "You should finish the levels before this one!")
                 }
             }
-      */
+            else{
+                //Present detail View Controller
+                //Names the view controller we want to navigate to
+                if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+                    
+                    //For sending data back
+                    vc.sendBack = self
+                    
+                    print("HERE ARE THE DECKS:")
+                    print(decks)
+                    
+                    //Add condition to check if the deck has been completed.
+                    //If not, go to tutorialView first
+                    
+                    //Check if we have already completed
+                    if(indexPath.row == 0 || decks[indexPath.row - 1].completed == true){
+                        vc.selectedDeck = decks[indexPath.row]
+                        vc.num = indexPath.row
+                        print(vc.selectedDeck)
+                        navigationController?.pushViewController(vc, animated: true)
+                    } else{
+                        errorAlert(message: "You should finish the levels before this one!")
+                    }
+                }
+                
+            }
+            
         }
         else{
             //Present view controller about not having a deck
@@ -172,9 +162,10 @@ class ViewController: UITableViewController, sendBack {
     
     
     //Do something with the data returned
-    func setFinishedDeck(viewedDeck: Deck){
+    func setFinishedDeck(viewedDeck: Deck, num: Int){
         
         self.sentFromDetail = viewedDeck
+        self.numFromDetail = num
         print("YOU GOT THIS DECK!")
         print(viewedDeck)
     }
