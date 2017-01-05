@@ -11,7 +11,7 @@ import GameplayKit
 
 //Can declare in a separate file
 protocol sendBack {
-    func setFinishedDeck(viewedDeck: Deck, num: Int)
+    func setFinishedDeck(viewedDeck: Deck, numFromDetail: Int)
 }
 
 class DetailViewController: UIViewController {
@@ -65,6 +65,11 @@ class DetailViewController: UIViewController {
         title = shuffledDeck[correctAnswer][0]
     }
 
+    func backToMenu(action: UIAlertAction! = nil) {
+        //Send info back
+        //sendBack?.setFinishedDeck(viewedDeck: selectedDeck!, numFromDetail: num!)
+        navigationController?.popToRootViewController(animated: true)
+    }
  
     @IBAction func buttonTapped(_ sender: UIButton) {
         
@@ -73,6 +78,9 @@ class DetailViewController: UIViewController {
         print(sender.tag)
         print("CORRECT ANSWER: ")
         print(correctAnswer)
+        
+        
+        
         
         if sender.tag == correctAnswer {
             print("YOU GOT ONE CORRECT")
@@ -83,10 +91,17 @@ class DetailViewController: UIViewController {
         
         numAnswered += 1
         //If have have answered enough questions (CHANGED FOR DEBUG)
-        if numAnswered == 1 {
+        if numAnswered == 10 {
+            
+            print(Double(numCorrect/numAnswered))
+            
             //If you did well enough, you can move to the next level
-            if Double(numCorrect / numAnswered) >= 0.9 {
-                //decks[num]?.completed = true
+            if Double(numCorrect) / Double(numAnswered) >= 0.9 {
+                selectedDeck?.completed = true
+                
+                //Maybe change this to a percentage if add # of cards
+                selectedDeck?.highScore = numCorrect
+                
                 message = "You have answered \(numCorrect) out of \(numAnswered) questions correct. You can move on to the next section if you like."
                 selectedDeck?.completed = true
             }
@@ -95,23 +110,21 @@ class DetailViewController: UIViewController {
                 message = "You have answered \(numCorrect) out of \(numAnswered) questions correct. I think you could use more practice."
             }
             
+             //Send info back
+            sendBack?.setFinishedDeck(viewedDeck: selectedDeck!, numFromDetail: num!)
+            
+            //Reset stats
+            numAnswered = 0
+            numCorrect = 0
             
             let ac = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-            
-            //Add option to continue or to go back to root
-            
+            ac.addAction(UIAlertAction(title: "Back", style: .default, handler: backToMenu))
+            ac.addAction(UIAlertAction(title: "Again", style: .default, handler: askQuestion))
+        
             present(ac, animated: true)
-            numAnswered = 0
-            correctAnswer = 0
             
-            //Send info back
-            sendBack?.setFinishedDeck(viewedDeck: selectedDeck!, num: num!)
-    
         }
-        //askQuestion()
-        
-        
+        askQuestion()
     }
 
     override func didReceiveMemoryWarning() {

@@ -19,13 +19,17 @@ class ViewController: UITableViewController, sendBack {
     var decks = [Deck]()
     
     var sentFromDetail: Deck?
+    var numFromDetail: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //DEBUG FOR CLEARING DATA
-        decks = [Deck]()
-        save()
+        /*    DEBUG FOR CLEARING DATA    */
+        //decks = [Deck]()
+        //save()
+        
+        print("HERE ARE THE DECKS")
+        print(decks)
         
         let defaults = UserDefaults.standard
         
@@ -67,9 +71,24 @@ class ViewController: UITableViewController, sendBack {
         
         
         
+        //Check decks size + 1 == indexPath.row
         
-        //Check if there is not a deck in decks, otherwise create a new one
-        if(decks.count >= indexPath.row){
+        //Check if the deck at the current size is completed
+        
+        //Then create the deck
+        
+        //Check if deck can exist
+        
+        //Check if deck does exist
+        
+        
+        
+        
+        
+        
+        
+        //Checks to see if we should create a new deck
+        if(decks.count == indexPath.row && (indexPath.row == 0 || decks[indexPath.row - 1].completed == true) ){
             
             //Find and load level string from the disk
             if let levelFilePath = Bundle.main.path(forResource: "level\(indexPath.row + 1)", ofType: "txt") {
@@ -139,9 +158,24 @@ class ViewController: UITableViewController, sendBack {
             }
             
         }
+        else if(decks.count > indexPath.row){
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+                
+                //For sending data back
+                vc.sendBack = self
+                
+                print("HERE ARE THE DECKS:")
+                print(decks)
+                
+                //Check if we have already completed
+                    vc.selectedDeck = decks[indexPath.row]
+                    vc.num = indexPath.row
+                    print(vc.selectedDeck)
+                    navigationController?.pushViewController(vc, animated: true)
+            }
+        }
         else{
-            //Present view controller about not having a deck
-            errorAlert(message: "You should finish the levels before this one")
+            errorAlert(message: "You should finish the levels before this one!")
         }
  
     }
@@ -162,12 +196,27 @@ class ViewController: UITableViewController, sendBack {
     
     
     //Do something with the data returned
-    func setFinishedDeck(viewedDeck: Deck, num: Int){
+    func setFinishedDeck(viewedDeck: Deck, numFromDetail: Int){
         
         self.sentFromDetail = viewedDeck
-        self.numFromDetail = num
+        self.numFromDetail = numFromDetail
+        
+        decks[numFromDetail].completed = viewedDeck.completed
+        
+        //If we have a new high score, update it
+        if(viewedDeck.highScore > decks[numFromDetail].highScore){
+            decks[numFromDetail].highScore = viewedDeck.highScore
+        }
+        
+        
+        //Also set the high score and any other stats
+        
+        save()
+        
         print("YOU GOT THIS DECK!")
         print(viewedDeck)
+        print("AND THIS NUM")
+        print(numFromDetail)
     }
     
 }
