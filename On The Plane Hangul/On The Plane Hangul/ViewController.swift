@@ -13,7 +13,7 @@ import UIKit
 class ViewController: UITableViewController, sendBack {
     
     //For the decks
-    var levels = 10
+    var levels = 9
     var currentDeck: [[String]] = [[]]
     //Default value for decks
     var decks = [Deck]()
@@ -25,16 +25,16 @@ class ViewController: UITableViewController, sendBack {
         super.viewDidLoad()
         
         /*    DEBUG FOR CLEARING DATA    */
-        //decks = [Deck]()
-        //save()
+        decks = [Deck]()
+        save()
         
         print("HERE ARE THE DECKS")
         print(decks)
         
         let defaults = UserDefaults.standard
         
-        self.tableView.backgroundColor = UIColor.blue
-        self.tableView.backgroundView?.backgroundColor = UIColor.blue
+        //self.tableView.backgroundColor = UIColor.gray
+        //self.tableView.backgroundView?.backgroundColor = UIColor.blue
         
         if let savedDecks = defaults.object(forKey: "decks") as? Data {
             decks = NSKeyedUnarchiver.unarchiveObject(with: savedDecks) as! [Deck]
@@ -45,14 +45,9 @@ class ViewController: UITableViewController, sendBack {
             return levels
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quiz", for: indexPath)
-        cell.backgroundColor = UIColor.clear
+        //cell.backgroundColor = UIColor.clear
         
         cell.textLabel?.text = "Level " + String(indexPath.row + 1)
         cell.tag = indexPath.row + 1
@@ -168,8 +163,8 @@ class ViewController: UITableViewController, sendBack {
                 print(decks)
                 
                 //Check if we have already completed
-                    vc.selectedDeck = decks[indexPath.row]
-                    vc.num = indexPath.row
+                    vc.selectedDeck = decks[indexPath.row]   
+                    vc.num = indexPath.row     //Number of the deck used
                     print(vc.selectedDeck)
                     navigationController?.pushViewController(vc, animated: true)
             }

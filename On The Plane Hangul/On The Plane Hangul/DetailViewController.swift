@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
+    @IBOutlet weak var questionLabel: UILabel!
     
     var selectedDeck: Deck?
     var num: Int?
@@ -62,7 +63,7 @@ class DetailViewController: UIViewController {
         button3.setTitle(shuffledDeck[2][1], for: UIControlState.normal)
         
         
-        title = shuffledDeck[correctAnswer][0]
+        questionLabel.text = shuffledDeck[correctAnswer][0]
     }
 
     func backToMenu(action: UIAlertAction! = nil) {

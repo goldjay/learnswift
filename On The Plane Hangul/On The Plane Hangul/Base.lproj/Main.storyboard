@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQo-Fk-fr7">
-                                <frame key="frameInset" minX="87" minY="118" width="200" height="100"/>
+                                <frame key="frameInset" minX="87" minY="146" width="200" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Button"/>
@@ -66,7 +66,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHH-wx-XFy">
-                                <frame key="frameInset" minX="87" minY="248" width="200" height="100"/>
+                                <frame key="frameInset" minX="87" minY="270" width="200" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Button"/>
@@ -74,8 +74,15 @@
                                     <action selector="buttonTapped:" destination="GLc-ya-ngm" eventType="touchUpInside" id="QE7-SK-bkc"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="question" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIv-nG-ird">
+                                <frame key="frameInset" minX="30" minY="67" width="308" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="63"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5O-nR-OeQ">
-                                <frame key="frameInset" minX="87" minY="378" width="200" height="100"/>
+                                <frame key="frameInset" minX="87" minY="386" width="200" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Button"/>
@@ -90,11 +97,12 @@
                         <outlet property="button1" destination="fQo-Fk-fr7" id="baJ-xb-1ld"/>
                         <outlet property="button2" destination="OHH-wx-XFy" id="b2B-az-Cqf"/>
                         <outlet property="button3" destination="c5O-nR-OeQ" id="bLL-BG-28P"/>
+                        <outlet property="questionLabel" destination="qIv-nG-ird" id="qNt-Os-lNc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HSN-m0-CsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1652" y="55"/>
+            <point key="canvasLocation" x="1652" y="54.422788605697157"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="e5B-Il-nFQ">

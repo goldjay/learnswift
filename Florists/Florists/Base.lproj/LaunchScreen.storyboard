@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="7on-Eq-Th4"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWP-hi-MyW">
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Florists" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8O-At-uKV">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="q9U-hk-Yrx"/>
+                                    <constraint firstAttribute="width" constant="203" id="wY8-7G-l2r"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="39"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We are the best florists" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahL-Yl-T8f">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rB4-et-vHP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="WWP-hi-MyW" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="1k3-xv-9AF"/>
+                            <constraint firstItem="j8O-At-uKV" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="61f-YG-ZlO"/>
+                            <constraint firstItem="ahL-Yl-T8f" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Flk-Qd-wAk"/>
+                            <constraint firstItem="j8O-At-uKV" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Ng2-qh-bkZ"/>
+                            <constraint firstItem="7on-Eq-Th4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="WZO-tc-kah"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ahL-Yl-T8f" secondAttribute="trailing" constant="38.5" id="Yls-zn-r34"/>
+                            <constraint firstItem="ahL-Yl-T8f" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="38.5" id="akd-Se-6Dn"/>
+                            <constraint firstItem="ahL-Yl-T8f" firstAttribute="top" secondItem="j8O-At-uKV" secondAttribute="bottom" constant="8" id="aq6-dY-gSz"/>
+                            <constraint firstAttribute="trailing" secondItem="7on-Eq-Th4" secondAttribute="trailing" id="bIa-Di-3L2"/>
+                            <constraint firstItem="7on-Eq-Th4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="dBD-8s-nQW"/>
+                            <constraint firstItem="WWP-hi-MyW" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="pDZ-CR-mqP"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="WWP-hi-MyW" secondAttribute="bottom" id="uA3-bG-65Q"/>
+                            <constraint firstAttribute="bottom" secondItem="7on-Eq-Th4" secondAttribute="bottom" id="z2w-S4-cJx"/>
+                            <constraint firstAttribute="trailing" secondItem="WWP-hi-MyW" secondAttribute="trailing" id="zEH-5M-ibT"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="1" width="1680" height="1050"/>
+    </resources>
+</document>
