@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wZA-Td-zSb">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Results View Controller-->
+        <scene sceneID="ARX-Vo-hZE">
+            <objects>
+                <viewController storyboardIdentifier="HowToUse" id="wZA-Td-zSb" customClass="ResultsViewController" customModule="BillSplitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZO8-dL-9jW"/>
+                        <viewControllerLayoutGuide type="bottom" id="x5q-tF-Ann"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yoh-PC-tcY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About this App" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apq-Hb-nNN">
+                                <color key="backgroundColor" red="0.0033570837699999998" green="0.56217569109999999" blue="0.99404710529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="MpT-GQ-YMn"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="elM-kv-O8b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPf-1x-qnc">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="0UO-hL-WAu"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="84" id="ZYk-eY-a75"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="Next"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nrr-of-EKO">
+                                <frame key="frameInset" minX="16" minY="20" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Yg0-kO-J42" kind="unwind" unwindAction="dismissVCWithSegue:" id="HSq-Wm-zEi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0033570837699999998" green="0.56217569109999999" blue="0.99404710529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="FPf-1x-qnc" firstAttribute="top" secondItem="apq-Hb-nNN" secondAttribute="bottom" constant="8" id="4ND-KX-dGQ"/>
+                            <constraint firstItem="apq-Hb-nNN" firstAttribute="trailing" secondItem="Yoh-PC-tcY" secondAttribute="trailingMargin" id="4c3-q7-LKU"/>
+                            <constraint firstItem="apq-Hb-nNN" firstAttribute="top" secondItem="ZO8-dL-9jW" secondAttribute="bottom" id="7gS-Ka-0I5"/>
+                            <constraint firstItem="apq-Hb-nNN" firstAttribute="trailing" secondItem="Yoh-PC-tcY" secondAttribute="trailingMargin" id="AJg-OD-12J"/>
+                            <constraint firstItem="FPf-1x-qnc" firstAttribute="trailing" secondItem="Yoh-PC-tcY" secondAttribute="trailingMargin" id="AQW-X8-w3b"/>
+                            <constraint firstItem="apq-Hb-nNN" firstAttribute="leading" secondItem="Yoh-PC-tcY" secondAttribute="leadingMargin" id="OBk-Zz-iQO"/>
+                            <constraint firstItem="FPf-1x-qnc" firstAttribute="top" secondItem="apq-Hb-nNN" secondAttribute="bottom" constant="8" id="PLD-cX-NzG"/>
+                            <constraint firstItem="FPf-1x-qnc" firstAttribute="trailing" secondItem="Yoh-PC-tcY" secondAttribute="trailingMargin" id="YX1-6f-oYT"/>
+                            <constraint firstItem="FPf-1x-qnc" firstAttribute="leading" secondItem="Yoh-PC-tcY" secondAttribute="leadingMargin" id="ZX5-RP-Vyf"/>
+                            <constraint firstItem="x5q-tF-Ann" firstAttribute="top" secondItem="FPf-1x-qnc" secondAttribute="bottom" constant="20" id="aMi-g1-um7"/>
+                            <constraint firstItem="FPf-1x-qnc" firstAttribute="leading" secondItem="Yoh-PC-tcY" secondAttribute="leadingMargin" id="enc-M5-s5P"/>
+                            <constraint firstItem="apq-Hb-nNN" firstAttribute="leading" secondItem="Yoh-PC-tcY" secondAttribute="leadingMargin" id="evj-pu-c59"/>
+                            <constraint firstItem="FPf-1x-qnc" firstAttribute="top" secondItem="apq-Hb-nNN" secondAttribute="bottom" constant="8" id="nrR-04-lQE"/>
+                            <constraint firstItem="x5q-tF-Ann" firstAttribute="top" secondItem="FPf-1x-qnc" secondAttribute="bottom" constant="20" id="vLT-hJ-sel"/>
+                            <constraint firstItem="apq-Hb-nNN" firstAttribute="top" secondItem="ZO8-dL-9jW" secondAttribute="bottom" id="yLh-Rd-2Rl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="338-4V-jGE">
+                        <barButtonItem key="leftBarButtonItem" title="X" id="fla-eT-2h0">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="Yg0-kO-J42" kind="unwind" unwindAction="dismissVCWithSegue:" id="b4J-Km-3sr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="resultsLabel" destination="apq-Hb-nNN" id="ywb-gW-6ZC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oos-b7-IGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Yg0-kO-J42" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2645.5999999999999" y="136.28185907046478"/>
+        </scene>
+    </scenes>
+</document>

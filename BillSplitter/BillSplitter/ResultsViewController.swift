@@ -21,10 +21,13 @@ class ResultsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    /*
     @IBAction func dismissResults(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
         
     }
+    */
+    
     
 
 }
